@@ -1,0 +1,35 @@
+apply plugin:'base'
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.ibm.mysampleapp"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        manifestPlaceholders = ['appIdRedirectScheme': android.defaultConfig.applicationId]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    lintOptions {
+        warning 'InvalidPackage'
+    }
+}
+
+dependencies {
+    
+    compile 'com.github.ibm-cloud-security:appid-clientsdk-android:1.+'
+    compile group: 'com.cloudant', name: 'cloudant-sync-datastore-android', version:'1.1.5'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:25.1.0'
+}
