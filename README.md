@@ -1,4 +1,6 @@
-<img src="https://bluemixassets.eu-gb.mybluemix.net/api/Products/image/logos/basic.svg?key=[starter-basic]&event=readme-image-view" alt="Basic Logo" width="200px"/>
+## Dokumentácia k Bluemix servisom:
+App ID - https://console.bluemix.net/docs/services/appid/existing.html#adding-app-id-to-an-existing-app
+Cloudant NoSQL DB - https://console.bluemix.net/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant
 
 ## Basic Starter
 Basic IBM Cloud Mobile Starter in Java
