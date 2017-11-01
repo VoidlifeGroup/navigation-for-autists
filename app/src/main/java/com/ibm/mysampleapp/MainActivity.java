@@ -1,5 +1,6 @@
 package com.ibm.mysampleapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 
@@ -87,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
             android.util.Log.e("TAG", e.getMessage(), e);
         }
 
+        final Intent autista2 = new Intent(MainActivity.this, BuildingMenu.class);
+
+        Button buildingMenu = (Button) findViewById(R.id.button);
+
+        buildingMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(autista2);
+            }
+
+        });
 
     }
 
