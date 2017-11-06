@@ -24,7 +24,7 @@ import com.cloudant.sync.datastore.DatastoreNotCreatedException;
 
 public class MainActivity extends AppCompatActivity {
 
-    
+    private boolean ASISTENT_MODE_ACTIVE = false;
     private java.net.URI cloudantUri;
     private Datastore ds;
     private DatastoreManager manager;
@@ -51,18 +51,11 @@ public class MainActivity extends AppCompatActivity {
         // Core SDK must be initialized to interact with Bluemix Mobile services.
         BMSClient.getInstance().initialize(getApplicationContext(), BMSClient.REGION_UK);
 
-        
 
-        
-
-        
-
-        
 
         AppID.getInstance().initialize(this, getString(R.string.authTenantId), BMSClient.REGION_UK);
         BMSClient.getInstance().setAuthorizationManager(new AppIDAuthorizationManager(AppID.getInstance()));
 
-        
 
         // Create a DatastoreManager using application internal storage path
         java.io.File path = getApplicationContext().getDir("datastores", android.content.Context.MODE_PRIVATE);
