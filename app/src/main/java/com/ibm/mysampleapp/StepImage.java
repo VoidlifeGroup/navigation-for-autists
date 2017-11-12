@@ -1,6 +1,7 @@
 package com.ibm.mysampleapp;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 /**
@@ -9,13 +10,13 @@ import android.widget.ImageView;
 
 public class StepImage {
 
-    private Bitmap sceneImage;
+    private String sceneImage;
     private boolean rightArrow;
     private boolean leftArrow;
     private boolean backArrow;
     private boolean forwardArrow;
 
-    public StepImage(Bitmap sceneImage, boolean rightArrow, boolean leftArrow, boolean backArrow,
+    public StepImage(String sceneImage, boolean rightArrow, boolean leftArrow, boolean backArrow,
                      boolean forwardArrow){
         this.sceneImage = sceneImage;
         this.rightArrow = rightArrow;
@@ -24,7 +25,7 @@ public class StepImage {
         this.forwardArrow = forwardArrow;
     }
 
-    public Bitmap getSceneImage(){
+    public String getSceneImage(){
         return this.sceneImage;
     }
 
