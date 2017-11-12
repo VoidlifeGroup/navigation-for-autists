@@ -24,11 +24,12 @@ public class BuildingNavigation extends AppCompatActivity {
 
         setContentView(R.layout.building_navigation);
 
-        //TODO TRASY DO MIESTNOSTÍ(BUTTONY)
-
         final ImageView sceneImage = (ImageView) findViewById(R.id.imageView);
         final Button rightArrow = (Button) findViewById(R.id.buttonRight);
         final Button leftArrow = (Button) findViewById(R.id.buttonLeft);
+        final Button forwardArrow = (Button) findViewById(R.id.buttonForward);
+
+        //protected DomParser traceParser;
 
         /**
          * -- PRÍKLAD JEDNEJ CESTY DO MIESTNOSTI --
@@ -46,33 +47,34 @@ public class BuildingNavigation extends AppCompatActivity {
 
         final ArrayList<StepImage> traceList = new ArrayList<>();
         traceList.add(new StepImage("obrazok1",
-                true, true, true,false));
+                true, true, false));
         traceList.add(new StepImage("obrazok2",
-                true, false, true,true));
+                true, false,true));
 
         /**
-         * Nastaví sa pozícia na začiatok
+         * Nastaví sa pozícia na začiatok a skryje všetky šípky
          */
 
         pozicia = 0;
+        rightArrow.setVisibility(View.GONE);
+        leftArrow.setVisibility(View.GONE);
+        forwardArrow.setVisibility(View.GONE);
 
         /**
          * Zavolanie funkcii showFirstImage, ktorá zobrazí prvý obrázok a šípky podľa údajov v objekte
          */
 
-        showFirstImage(sceneImage, traceList, pozicia, rightArrow, leftArrow);
+        showFirstImage(sceneImage, traceList, pozicia, rightArrow, leftArrow, forwardArrow);
 
         /**
-         * OnClickListener na šípky (zatiaľ 2)
+         * OnClickListener na šípky
          */
-
-        //TODO OSTATNÉ SMERY
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pozicia++;
-                update(sceneImage, traceList, pozicia, rightArrow, leftArrow);
+                update(sceneImage, traceList, pozicia, rightArrow, leftArrow, forwardArrow);
             }
         });
 
@@ -80,7 +82,15 @@ public class BuildingNavigation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pozicia++;
-                update(sceneImage, traceList, pozicia, rightArrow, leftArrow);
+                update(sceneImage, traceList, pozicia, rightArrow, leftArrow, forwardArrow);
+            }
+        });
+
+        forwardArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pozicia++;
+                update(sceneImage, traceList, pozicia, rightArrow, leftArrow, forwardArrow);
             }
         });
 
@@ -88,7 +98,7 @@ public class BuildingNavigation extends AppCompatActivity {
 
 
     protected void update(ImageView sceneImage, ArrayList<StepImage> traceList, int pozicia,
-                          Button rightArrow, Button leftArrow){
+                          Button rightArrow, Button leftArrow, Button forwardArrow){
         /**
          * Nastavenie obrázku - vygenerujeme si ID daného obrázka a potom nastavíme obrázok podľa ID
          */
@@ -99,15 +109,25 @@ public class BuildingNavigation extends AppCompatActivity {
 
         /**
          * Keď sa načíta obrázok tak sa nastaví viditeľnosť
-         * buttonov podľa uloženého stavu smerov(zatiaľ vpravo-vlavo)
+         * buttonov podľa uloženého stavu smerov
          */
 
-        if (!traceList.get(pozicia).getRight()){
+        if (traceList.get(pozicia).getRight()){
+            rightArrow.setVisibility(View.VISIBLE);
+        } else {
             rightArrow.setVisibility(View.GONE);
         }
 
-        if (!traceList.get(pozicia).getLeft()){
+        if (traceList.get(pozicia).getLeft()){
+            leftArrow.setVisibility(View.VISIBLE);
+        } else {
             leftArrow.setVisibility(View.GONE);
+        }
+
+        if (traceList.get(pozicia).getForward()){
+            forwardArrow.setVisibility(View.VISIBLE);
+        } else {
+            forwardArrow.setVisibility(View.GONE);
         }
 
     }
@@ -134,18 +154,20 @@ public class BuildingNavigation extends AppCompatActivity {
      * @param leftArrow - arrowButton
      */
 
-
     protected void showFirstImage(final ImageView sceneImage, final ArrayList<StepImage> traceList,
                                   final int pozicia, final Button rightArrow,
-                                  final Button leftArrow){
+                                  final Button leftArrow, final Button forwardArrow){
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                update(sceneImage, traceList, pozicia, rightArrow, leftArrow);
+                update(sceneImage, traceList, pozicia, rightArrow, leftArrow, forwardArrow);
             }
         }, 4000);
     }
 
+    protected void fillArray(ArrayList<StepImage> traceList){
+        //traceParser.parseTrace(this);
+    }
 }

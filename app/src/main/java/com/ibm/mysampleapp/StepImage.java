@@ -1,8 +1,5 @@
 package com.ibm.mysampleapp;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
 
 /**
  * Created by mato on 6. 11. 2017.
@@ -13,15 +10,12 @@ public class StepImage {
     private String sceneImage;
     private boolean rightArrow;
     private boolean leftArrow;
-    private boolean backArrow;
     private boolean forwardArrow;
 
-    public StepImage(String sceneImage, boolean rightArrow, boolean leftArrow, boolean backArrow,
-                     boolean forwardArrow){
+    public StepImage(String sceneImage, boolean rightArrow, boolean leftArrow, boolean forwardArrow){
         this.sceneImage = sceneImage;
         this.rightArrow = rightArrow;
         this.leftArrow = leftArrow;
-        this.backArrow = backArrow;
         this.forwardArrow = forwardArrow;
     }
 
@@ -29,17 +23,12 @@ public class StepImage {
         return this.sceneImage;
     }
 
-
     public boolean getRight(){
         return this.rightArrow;
     }
 
     public boolean getLeft(){
         return this.leftArrow;
-    }
-
-    public boolean getBack(){
-        return this.backArrow;
     }
 
     public boolean getForward(){
