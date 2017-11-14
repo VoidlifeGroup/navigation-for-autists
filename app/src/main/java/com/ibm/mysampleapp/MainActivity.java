@@ -1,5 +1,6 @@
 package com.ibm.mysampleapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,11 @@ import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.sync.datastore.DatastoreManager;
 import com.cloudant.sync.datastore.DatastoreNotCreatedException;
+import com.ibm.mysampleapp.algo.Dijkstra;
+import com.ibm.mysampleapp.graph.Graph;
+
+import java.io.InputStream;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -94,6 +100,18 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        // Iba dočasné znázornenie prvotnej funkcionality triedy Graph a dijk. algoritmu
+        Context context = getApplicationContext();
+        InputStream iStream = context.getResources().openRawResource(R.raw.verticles);
+        Graph g = new Graph("Test FPV UMB", iStream);
+        int[][] matica = g.matrix();
+        Dijkstra dijk = new Dijkstra();
+        ArrayList<Integer> al;
+        al = dijk.algoCompute(matica, g.getNumberOfVerticles(), 7, 2);
+        System.out.println("velkost arraylistu al: " + al.size());
+        for(int i = 0; i < al.size(); i++){
+            System.out.println("Cesta ide takto(id vrcholov): " + al.get(i));
+        }
     }
 
     @Override
@@ -124,10 +142,7 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 }
