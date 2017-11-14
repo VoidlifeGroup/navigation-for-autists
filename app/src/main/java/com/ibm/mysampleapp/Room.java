@@ -11,7 +11,7 @@ public class Room {
         this.name = name;
     }
 
-    String getRoomName() {
+    public String getName() {
         return name;
     }
 }

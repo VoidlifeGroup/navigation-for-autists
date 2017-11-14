@@ -2,7 +2,7 @@ package com.ibm.mysampleapp;
 
 import java.util.ArrayList;
 
-class Building {
+public class Building {
     private String name;
     private ArrayList listOfRooms;
 
@@ -11,11 +11,11 @@ class Building {
         this.listOfRooms = listOfRooms;
     }
 
-    String getName(){
+    public String getName(){
         return name;
     }
 
-    ArrayList getListOfRooms(){
+    ArrayList getRooms(){
         return listOfRooms;
     }
 }

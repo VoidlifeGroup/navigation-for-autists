@@ -5,12 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ibm.mysampleapp.adapters.BuildingAdapter;
 
 /**
  * Táto class slúži ako aktivita pre zobrazenie zoznamu budov ktoré naša aplikácia podporuje.
@@ -35,11 +32,9 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList{
         buildingNames.add(new Building("Univerzita Mateja Bela", roomNames));
         buildingNames.add(new Building("Univerzita Komenského", roomNames));
 
-        CustomAdapter cAdapter = new CustomAdapter(this, buildingNames);
-        ArrayAdapter<Building> arrayAdapter = new ArrayAdapter<>(
-               this, android.R.layout.simple_list_item_1, buildingNames);
-        ListView buildingList = (ListView) findViewById(R.id.listOfBuildings);
-        buildingList.setAdapter(arrayAdapter);
+        BuildingAdapter cAdapter = new BuildingAdapter(buildingNames, getApplicationContext());
+        ListView buildingList = (ListView) findViewById(R.id.list);
+        buildingList.setAdapter(cAdapter);
         buildingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -47,9 +42,5 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList{
                 startActivity(autista3);
             }
         });
-
-
-
-
     }
 }
