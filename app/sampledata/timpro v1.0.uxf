@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>270</y>
+      <w>220</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Class Algorithm
+Package::algorithm
+--
+-matrix
+--
++algorithm()
++Algorithm(matrix)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>270</y>
+      <w>210</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Class Edge
+Package::graph
+--
+-fromIdNode:int
+-toIdNode:int
+-image:String
+-distance:int
+-leftArrowIdNode:int
+-rigthArrowIdNode:int
+-upArrowIdNode:int
+--
++geters()
++Edge(fromNode,toNode,
+image,distance)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>270</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Class Node
+Package::graph
+--
+-idNode:int
+-type:NodeType
+--
++getters()
++Node(idNode, type)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>570</x>
+      <y>480</y>
+      <w>360</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>1.autista si vyberie budovu
+2.cez konstruktor v Graphe sa nacita xmlko
+3.cez metodu matrix sa autistovi zobrazi zoznam 
+miestnaosti
+4.po vybrati miestosti from to sa rozbehne algo
+
+5.algoritmus vrati zoznam bodov v poradi trasy
+6.kazde dva body sa najdu v zozname hran 
+7.po najdeni hrany sa moze nacitat obrazok
+8.dalsi bod v trase urci smer sipky
+pozn.: hrana ktora nema ani jednu sipku je slepa teda je 
+to bud cielova alebo zaciatocna  </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>440</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Enum NodeType
+Package::graph
+--
+ROOM
+CONNECTOR</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>270</y>
+      <w>280</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Class Graph
+Package::graph
+--
+-Edges:List
+-Nodes:List
+--
++Graph(building:String) nacita danu budovu
++rooms() vrati list miestnosti 
+  pre zobrazenie vyberu autistovi
++matrix() vytvori maticu pre algoritmus
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>280</y>
+      <w>90</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;60.0;40.0;60.0;40.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>280</y>
+      <w>70</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;30.0;10.0;30.0;40.0;50.0;40.0</additional_attributes>
+  </element>
+</diagram>
