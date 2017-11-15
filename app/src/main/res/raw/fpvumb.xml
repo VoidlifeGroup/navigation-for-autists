@@ -14,7 +14,7 @@
         <edge from="2" to="1" img="dsfgd" dis="3" left="4" right="3" up="1"/>
         <edge from="2" to="3" img="gfdg" dis="2"/>
     </verticle>
-    <verticle id="3">
+    <verticle name="evka" id="3">
         <edge from="3" to="4" img="glrf" dis="2"/>
         <edge from="3" to="2" img="dsfgd" dis="2" left="4" right="3" up="1"/>
         <edge from="3" to="6" img="gfdg" dis="6"/>
@@ -23,7 +23,7 @@
         <edge from="4" to="3" img="ergf" dis="2"/>
         <edge from="4" to="5" img="vbn" dis="4"/>
     </verticle>
-    <verticle id="5">
+    <verticle name="F134" id="5">
         <edge from="5" to="1" img="glrf" dis="6"/>
         <edge from="5" to="4" img="dsfgd" dis="4" left="4" right="3" up="1"/>
         <edge from="5" to="7" img="gfdg" dis="9"/>

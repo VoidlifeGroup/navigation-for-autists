@@ -19,11 +19,10 @@ public class Graph implements BuildingList{
     private final static int matrixConst = 9999;
 
     public Graph(String building, InputStream s){
-        //TODO pride string s nazvom budovy{nazov xmlka}...
 
         XmlPullParserNFA p = new XmlPullParserNFA();
         try {
-            verticles = p.parse(s);
+            verticles = p.parseVerticles(s);
         } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
         }
@@ -60,13 +59,15 @@ public class Graph implements BuildingList{
         this.edges = edges_temp;
     }
 
-    public void rooms(){
+    public ArrayList<Room> rooms(){
+        ArrayList<Room> rooms = new ArrayList<>();
 
         for (Verticle verticle : verticles){
             if (verticle instanceof Room){
                 rooms.add((Room) verticle);
             }
         }
+        return rooms;
     }
 
     public int getNumberOfVerticles(){

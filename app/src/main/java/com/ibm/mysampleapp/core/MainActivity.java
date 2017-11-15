@@ -103,13 +103,9 @@ public class MainActivity extends AppCompatActivity implements BuildingList{
 
         // Iba dočasné znázornenie prvotnej funkcionality triedy Graph a dijk. algoritmu
         Context context = getApplicationContext();
-        InputStream iStream = context.getResources().openRawResource(R.raw.verticles);
+        InputStream iStream = context.getResources().openRawResource(R.raw.fpvumb);
+
         Graph g = new Graph("Test FPV UMB", iStream);
-        //TODO Miestnosti sa budú parsovať v BuildingMenu po vybraní budovy
-        g.rooms();
-        // TODO Načítavať zoznam budov z XMLka
-        buildingNames.add(new Building("Univerzita Mateja Bela", rooms));
-        buildingNames.add(new Building("Univerzita Komenského", rooms));
         int[][] matica = g.matrix();
         Dijkstra dijk = new Dijkstra();
         ArrayList<Integer> al;

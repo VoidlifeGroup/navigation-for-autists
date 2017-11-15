@@ -1,18 +1,24 @@
 package com.ibm.mysampleapp.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Building {
+public class Building implements Serializable {
     private String name;
+    private String xml;
     private ArrayList listOfRooms;
 
-    Building(String name, ArrayList listOfRooms) {
+    public Building(String name, String xml) {
         this.name = name;
-        this.listOfRooms = listOfRooms;
+        this.xml = xml;
     }
 
     public String getName(){
         return name;
+    }
+
+    public String getXml() {
+        return xml;
     }
 
     ArrayList getRooms(){

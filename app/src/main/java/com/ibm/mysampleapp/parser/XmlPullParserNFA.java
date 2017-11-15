@@ -2,6 +2,7 @@ package com.ibm.mysampleapp.parser;
 
 import android.util.Xml;
 
+import com.ibm.mysampleapp.core.Building;
 import com.ibm.mysampleapp.graph.*;
 import com.ibm.mysampleapp.graph.Room;
 
@@ -17,7 +18,50 @@ public class XmlPullParserNFA {
     // We don't use namespaces
     private static final String ns = null;
 
-    public ArrayList<Verticle> parse(InputStream in) throws XmlPullParserException, IOException {
+    public ArrayList<Building> parseBuildings(InputStream in) throws XmlPullParserException,
+            IOException {
+        try {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            parser.nextTag();
+            return readFeedBuildings(parser);
+        } finally {
+            in.close();
+        }
+    }
+
+    private ArrayList<Building> readFeedBuildings(XmlPullParser parser) throws
+            XmlPullParserException, IOException {
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        parser.require(XmlPullParser.START_TAG, ns, "buildings");
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            // Starts by looking for the entry tag
+            if (name.equals("building")) {
+                buildings.add(readBuilding(parser));
+            } else {
+                skip(parser);
+            }
+        }
+        return buildings;
+    }
+
+    private Building readBuilding(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, ns, "building");
+        String buildingName = parser.getAttributeValue(null, "name");
+        String buildingXml = parser.getAttributeValue(null, "xml");
+        while (parser.next() != XmlPullParser.END_TAG) {
+            skip(parser);
+        }
+        return new Building(buildingName, buildingXml);
+    }
+
+    public ArrayList<Verticle> parseVerticles(InputStream in) throws XmlPullParserException,
+            IOException {
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
@@ -28,9 +72,6 @@ public class XmlPullParserNFA {
             in.close();
         }
     }
-
-
-
 
     private ArrayList<Verticle> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
         ArrayList<Verticle> verticles = new ArrayList<Verticle>();
