@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.ibm.mysampleapp.BuildingMenu">
+    tools:context="com.ibm.mysampleapp.core.BuildingMenu">
 
     <include layout="@layout/content_main" />
 

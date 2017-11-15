@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp;
+package com.ibm.mysampleapp.core;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.sync.datastore.DatastoreManager;
 import com.cloudant.sync.datastore.DatastoreNotCreatedException;
+import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.algo.Dijkstra;
 import com.ibm.mysampleapp.graph.Graph;
 
@@ -28,7 +29,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BuildingList{
 
     private boolean ASISTENT_MODE_ACTIVE = false;
     private java.net.URI cloudantUri;
@@ -104,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         InputStream iStream = context.getResources().openRawResource(R.raw.verticles);
         Graph g = new Graph("Test FPV UMB", iStream);
+        //TODO Miestnosti sa budú parsovať v BuildingMenu po vybraní budovy
+        g.rooms();
+        // TODO Načítavať zoznam budov z XMLka
+        buildingNames.add(new Building("Univerzita Mateja Bela", rooms));
+        buildingNames.add(new Building("Univerzita Komenského", rooms));
         int[][] matica = g.matrix();
         Dijkstra dijk = new Dijkstra();
         ArrayList<Integer> al;

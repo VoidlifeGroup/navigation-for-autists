@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp;
+package com.ibm.mysampleapp.core;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,19 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.ibm.mysampleapp.R;
+
 import java.util.ArrayList;
 
-
 /**
- * Created by mato on 1. 11. 2017.
+ * @author Martin Marič
  */
-
-public class BuildingNavigation extends AppCompatActivity {
+public class Navigation extends AppCompatActivity {
 
     int pozicia;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.building_navigation);
@@ -49,7 +50,7 @@ public class BuildingNavigation extends AppCompatActivity {
         traceList.add(new StepImage("obrazok1",
                 true, true, false));
         traceList.add(new StepImage("obrazok2",
-                true, false,true));
+                true, false, true));
 
         /**
          * Nastaví sa pozícia na začiatok a skryje všetky šípky
@@ -98,7 +99,7 @@ public class BuildingNavigation extends AppCompatActivity {
 
 
     protected void update(ImageView sceneImage, ArrayList<StepImage> traceList, int pozicia,
-                          Button rightArrow, Button leftArrow, Button forwardArrow){
+                          Button rightArrow, Button leftArrow, Button forwardArrow) {
         /**
          * Nastavenie obrázku - vygenerujeme si ID daného obrázka a potom nastavíme obrázok podľa ID
          */
@@ -112,19 +113,19 @@ public class BuildingNavigation extends AppCompatActivity {
          * buttonov podľa uloženého stavu smerov
          */
 
-        if (traceList.get(pozicia).getRight()){
+        if (traceList.get(pozicia).getRight()) {
             rightArrow.setVisibility(View.VISIBLE);
         } else {
             rightArrow.setVisibility(View.GONE);
         }
 
-        if (traceList.get(pozicia).getLeft()){
+        if (traceList.get(pozicia).getLeft()) {
             leftArrow.setVisibility(View.VISIBLE);
         } else {
             leftArrow.setVisibility(View.GONE);
         }
 
-        if (traceList.get(pozicia).getForward()){
+        if (traceList.get(pozicia).getForward()) {
             forwardArrow.setVisibility(View.VISIBLE);
         } else {
             forwardArrow.setVisibility(View.GONE);
@@ -135,11 +136,12 @@ public class BuildingNavigation extends AppCompatActivity {
 
     /**
      * Funkcia, ktorá transferne názov obrázka do integeru(jeho ID)
-     * @param imageContext - context
+     *
+     * @param imageContext    - context
      * @param imageIdentifier - názov obrázka vo forme stringu
      * @return
      */
-    protected int convertImage(Context imageContext, String imageIdentifier){
+    protected int convertImage(Context imageContext, String imageIdentifier) {
         int imageId = imageContext.getResources().getIdentifier(imageIdentifier, "drawable",
                 imageContext.getPackageName());
         return imageId;
@@ -147,16 +149,17 @@ public class BuildingNavigation extends AppCompatActivity {
 
     /**
      * Funkcia, ktorá zavolá funkciu update po 4 sekundách - vykreslí prvý obrázok
+     *
      * @param sceneImage - obrázok
-     * @param traceList - trasa
-     * @param pozicia - pozicia
+     * @param traceList  - trasa
+     * @param pozicia    - pozicia
      * @param rightArrow - arrowButton
-     * @param leftArrow - arrowButton
+     * @param leftArrow  - arrowButton
      */
 
     protected void showFirstImage(final ImageView sceneImage, final ArrayList<StepImage> traceList,
                                   final int pozicia, final Button rightArrow,
-                                  final Button leftArrow, final Button forwardArrow){
+                                  final Button leftArrow, final Button forwardArrow) {
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -164,10 +167,10 @@ public class BuildingNavigation extends AppCompatActivity {
             public void run() {
                 update(sceneImage, traceList, pozicia, rightArrow, leftArrow, forwardArrow);
             }
-        }, 4000);
+        }, 2000);
     }
 
-    protected void fillArray(ArrayList<StepImage> traceList){
+    protected void fillArray(ArrayList<StepImage> traceList) {
         //traceParser.parseTrace(this);
     }
 }

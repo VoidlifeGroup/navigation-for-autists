@@ -1,4 +1,6 @@
-package com.ibm.mysampleapp;
+package com.ibm.mysampleapp.core;
+
+import com.ibm.mysampleapp.graph.Room;
 
 import java.util.ArrayList;
 
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 
 public interface BuildingList {
 
-    ArrayList<Room> roomNames = new ArrayList<>();
+    ArrayList<Room> rooms = new ArrayList<>();
 
     ArrayList<Building> buildingNames = new ArrayList<>();
 

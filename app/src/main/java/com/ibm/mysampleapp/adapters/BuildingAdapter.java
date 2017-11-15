@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.ibm.mysampleapp.Building;
+import com.ibm.mysampleapp.core.Building;
 import com.ibm.mysampleapp.R;
 
 import java.util.ArrayList;

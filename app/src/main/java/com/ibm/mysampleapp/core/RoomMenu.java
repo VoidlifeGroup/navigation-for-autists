@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp;
+package com.ibm.mysampleapp.core;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.RoomAdapter;
 
 /**
@@ -19,12 +20,12 @@ public class RoomMenu extends AppCompatActivity implements BuildingList{
         super.onCreate(savedInstanceState);
 
         final Intent autista4 = new Intent(RoomMenu.this,
-                BuildingNavigation.class);
+                Navigation.class);
 
         setContentView(R.layout.room_menu);
 
         //TODO musí vypisovať cez custom adapter inak zatial vypisuje miesto nazvu miestnosti jej adresu
-        RoomAdapter roomAdapter = new RoomAdapter(roomNames, getApplicationContext());
+        RoomAdapter roomAdapter = new RoomAdapter(rooms, getApplicationContext());
         ListView roomList = (ListView) findViewById(R.id.list);
         roomList.setAdapter(roomAdapter);
         roomList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

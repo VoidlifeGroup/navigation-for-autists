@@ -1,7 +1,8 @@
 package com.ibm.mysampleapp.graph;
 
 
-import com.ibm.mysampleapp.XmlPullParserNFA;
+import com.ibm.mysampleapp.core.BuildingList;
+import com.ibm.mysampleapp.parser.XmlPullParserNFA;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -10,7 +11,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class Graph {
+public class Graph implements BuildingList{
 
     private ArrayList<Edge> edges = new ArrayList<Edge>();
     private ArrayList<Verticle> verticles = new ArrayList<Verticle>();
@@ -59,15 +60,13 @@ public class Graph {
         this.edges = edges_temp;
     }
 
-    public ArrayList<Room> rooms(){
-        ArrayList<Room> rooms = new ArrayList<Room>();
+    public void rooms(){
 
         for (Verticle verticle : verticles){
             if (verticle instanceof Room){
                 rooms.add((Room) verticle);
             }
         }
-        return rooms;
     }
 
     public int getNumberOfVerticles(){

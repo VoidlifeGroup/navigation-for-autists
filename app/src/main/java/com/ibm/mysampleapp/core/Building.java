@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp;
+package com.ibm.mysampleapp.core;
 
 import java.util.ArrayList;
 

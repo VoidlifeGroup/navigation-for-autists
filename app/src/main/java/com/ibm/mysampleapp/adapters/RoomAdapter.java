@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.ibm.mysampleapp.R;
-import com.ibm.mysampleapp.Room;
+import com.ibm.mysampleapp.graph.Room;
 
 import java.util.ArrayList;
 

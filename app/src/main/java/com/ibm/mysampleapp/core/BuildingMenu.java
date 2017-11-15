@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp;
+package com.ibm.mysampleapp.core;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.BuildingAdapter;
 
 /**
@@ -24,13 +25,7 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList{
         final Intent autista3 = new Intent(BuildingMenu.this,
                 RoomMenu.class);
 
-        // TODO Načítvať zoznam miestností zo súboru
-        roomNames.add(new Room("F125"));
-        roomNames.add(new Room("F130"));
-        roomNames.add(new Room("F131"));
-        // TODO Načítavať zoznam budov zo súboru
-        buildingNames.add(new Building("Univerzita Mateja Bela", roomNames));
-        buildingNames.add(new Building("Univerzita Komenského", roomNames));
+        // TODO Načítvať zoznam miestností zo súboru, bude po vybratí budovy
 
         BuildingAdapter cAdapter = new BuildingAdapter(buildingNames, getApplicationContext());
         ListView buildingList = (ListView) findViewById(R.id.list);
