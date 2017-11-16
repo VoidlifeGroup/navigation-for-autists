@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements BuildingList{
         for(int i = 0; i < al.size(); i++){
             System.out.println("Cesta ide takto(id vrcholov): " + al.get(i));
         }
+        g.traceList(al);
+
     }
 
     @Override

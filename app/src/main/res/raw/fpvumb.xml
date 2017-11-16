@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <verticles building="FPV UMB">
     <verticle name="drak" id="0">
-        <edge from="0" to="1" img="asdf" dis="5"/>
-        <edge from="0" to="2" img="dcasd" dis="4" left="4" right="3" up="1"/>
+        <edge from="0" to="1" img="asdf" dis="5" left="3"  up="5"/>
+        <edge from="0" to="2" img="dcasd" dis="4" right="1" up="3"/>
     </verticle>
     <verticle id="1">
-        <edge from="1" to="0" img="glrf" dis="5"/>
-        <edge from="1" to="2" img="dsfgd" dis="3" left="4" right="3" up="1"/>
-        <edge from="1" to="5" img="gfdg" dis="6"/>
+        <edge from="1" to="0" img="glrf" dis="5" right="2"/>
+        <edge from="1" to="2" img="dsfgd" dis="3" left="0" right="3"/>
+        <edge from="1" to="5" img="gfdg" dis="6" left="4"  up="7"/>
     </verticle>
     <verticle id="2">
-        <edge from="2" to="0" img="glrf" dis="4"/>
-        <edge from="2" to="1" img="dsfgd" dis="3" left="4" right="3" up="1"/>
-        <edge from="2" to="3" img="gfdg" dis="2"/>
+        <edge from="2" to="0" img="glrf" dis="1" left="1"/>
+        <edge from="2" to="1" img="dsfgd" dis="3" left="6" right="0"/>
+        <edge from="2" to="3" img="gfdg" dis="2" right="4" up="6"/>
     </verticle>
     <verticle name="evka" id="3">
-        <edge from="3" to="4" img="glrf" dis="2"/>
-        <edge from="3" to="2" img="dsfgd" dis="2" left="4" right="3" up="1"/>
-        <edge from="3" to="6" img="gfdg" dis="6"/>
+        <edge from="3" to="4" img="glrf" dis="2" up="5"/>
+        <edge from="3" to="2" img="dsfgd" dis="2" left="1" up="0"/>
+        <edge from="3" to="6" img="gfdg" dis="6" right="7"/>
     </verticle>
     <verticle id="4">
-        <edge from="4" to="3" img="ergf" dis="2"/>
-        <edge from="4" to="5" img="vbn" dis="4"/>
+        <edge from="4" to="3" img="ergf" dis="2" left="2" right="6"/>
+        <edge from="4" to="5" img="vbn" dis="4" left="7" right="1"/>
     </verticle>
     <verticle name="F134" id="5">
-        <edge from="5" to="1" img="glrf" dis="6"/>
-        <edge from="5" to="4" img="dsfgd" dis="4" left="4" right="3" up="1"/>
-        <edge from="5" to="7" img="gfdg" dis="9"/>
+        <edge from="5" to="1" img="glrf" dis="6" right="2" up="0"/>
+        <edge from="5" to="4" img="dsfgd" dis="4" up="3"/>
+        <edge from="5" to="7" img="gfdg" dis="9" left="6"/>
     </verticle>
     <verticle id="6">
-        <edge from="6" to="3" img="glrf" dis="6"/>
-        <edge from="6" to="7" img="gfdg" dis="7"/>
+        <edge from="6" to="3" img="glrf" dis="6" left="4" up="2"/>
+        <edge from="6" to="7" img="gfdg" dis="7" right="5"/>
     </verticle>
     <verticle id="7">
-        <edge from="7" to="5" img="lulcek" dis="9"/>
-        <edge from="7" to="6" img="bomba" dis="7" left="4" right="3" up="1"/>
+        <edge from="7" to="5" img="lulcek" dis="9" right="4" up="1"/>
+        <edge from="7" to="6" img="bomba" dis="7" left="3"/>
     </verticle>
 </verticles>

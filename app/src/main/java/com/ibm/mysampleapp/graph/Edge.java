@@ -8,16 +8,16 @@ public class Edge {
     private final int toIdVerticle;
     private final int distance;
     private final Integer leftArrowIdVerticle;
-    private final Integer rigthArrowIdVerticle;
+    private final Integer rightArrowIdVerticle;
     private final Integer upArrowIdVerticle;
 
     public Edge(int fromIdVerticle, int toIdVerticle, int distance, Integer leftArrowIdVerticle,
-                Integer rigthArrowIdVerticle, Integer upArrowIdVerticle, String image){
+                Integer rightArrowIdVerticle, Integer upArrowIdVerticle, String image){
         this.fromIdVerticle = fromIdVerticle;
         this.toIdVerticle = toIdVerticle;
         this.distance = distance;
         this.leftArrowIdVerticle = leftArrowIdVerticle;
-        this.rigthArrowIdVerticle = rigthArrowIdVerticle;
+        this.rightArrowIdVerticle = rightArrowIdVerticle;
         this.upArrowIdVerticle = upArrowIdVerticle;
         this.image = image;
     }
@@ -43,7 +43,7 @@ public class Edge {
     }
 
     public Integer getRigthArrowIdVerticle() {
-        return rigthArrowIdVerticle;
+        return rightArrowIdVerticle;
     }
 
     public Integer getUpArrowIdVerticle() {
