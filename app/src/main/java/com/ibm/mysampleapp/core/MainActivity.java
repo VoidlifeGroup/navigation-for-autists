@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements BuildingList{
         // Iba dočasné znázornenie prvotnej funkcionality triedy Graph a dijk. algoritmu
         // testovaci graf
         Context context = getApplicationContext();
-        InputStream iStream = context.getResources().openRawResource(R.raw.testovacigraf);
+        InputStream iStream = context.getResources().openRawResource(R.raw.testovaci_graf);
 
         Graph g = new Graph("Test", iStream);
         int[][] matica = g.matrix();
