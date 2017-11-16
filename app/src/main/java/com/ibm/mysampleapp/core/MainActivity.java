@@ -102,19 +102,36 @@ public class MainActivity extends AppCompatActivity implements BuildingList{
         });
 
         // Iba dočasné znázornenie prvotnej funkcionality triedy Graph a dijk. algoritmu
-        Context context = getApplicationContext();
-        InputStream iStream = context.getResources().openRawResource(R.raw.fpvumb);
+//        Context context = getApplicationContext();
+//        InputStream iStream = context.getResources().openRawResource(R.raw.fpvumb);
+//
+//        Graph g = new Graph("Test FPV UMB", iStream);
+//        int[][] matica = g.matrix();
+//        Dijkstra dijk = new Dijkstra();
+//        ArrayList<Integer> al;
+//        al = dijk.algoCompute(matica, g.getNumberOfVerticles(), 7, 2);
+//        System.out.println("velkost arraylistu al: " + al.size());
+//        for(int i = 0; i < al.size(); i++){
+//            System.out.println("Cesta ide takto(id vrcholov): " + al.get(i));
+//        }
+//        g.traceList(al);
 
-        Graph g = new Graph("Test FPV UMB", iStream);
+        // Iba dočasné znázornenie prvotnej funkcionality triedy Graph a dijk. algoritmu
+        // testovaci graf
+        Context context = getApplicationContext();
+        InputStream iStream = context.getResources().openRawResource(R.raw.testovacigraf);
+
+        Graph g = new Graph("Test", iStream);
         int[][] matica = g.matrix();
         Dijkstra dijk = new Dijkstra();
         ArrayList<Integer> al;
-        al = dijk.algoCompute(matica, g.getNumberOfVerticles(), 7, 2);
+        al = dijk.algoCompute(matica, g.getNumberOfVerticles(), 10, 8);
         System.out.println("velkost arraylistu al: " + al.size());
         for(int i = 0; i < al.size(); i++){
             System.out.println("Cesta ide takto(id vrcholov): " + al.get(i));
         }
         g.traceList(al);
+
 
     }
 

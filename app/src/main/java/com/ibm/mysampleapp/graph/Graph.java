@@ -77,6 +77,9 @@ public class Graph implements BuildingList, TraceList{
     }
 
     public void traceList(ArrayList<Integer> result){
+
+        clearTraceList();
+
         boolean forward, right, left;
         for (int i = 0; i < result.size()-2; i++){
             forward = right = left = false;
