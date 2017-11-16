@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<verticles building="FPV UMB">
+<verticles building="TEST">
     <verticle id="0">
         <edge from="0" to="1" img="test_fialova.png" dis="5" left="3"  forward="5"/>
         <edge from="0" to="2" img="test_cervena.png" dis="4" right="1" forward="3" left="8"/>
