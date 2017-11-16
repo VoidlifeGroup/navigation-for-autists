@@ -2,4 +2,5 @@
 <buildings>
     <building name="FPV UMB" xml="fpvumb"/>
     <building name="EF UMB" xml="temps"/>
+    <building name="TEST" xml="testovaci_graf"/>
 </buildings>
