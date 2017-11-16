@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * @author Martin Marič
  */
-public class Navigation extends AppCompatActivity {
+public class Navigation extends AppCompatActivity implements TraceList {
 
     int pozicia;
 
@@ -46,11 +46,11 @@ public class Navigation extends AppCompatActivity {
          */
 
 
-        final ArrayList<StepImage> traceList = new ArrayList<>();
-        traceList.add(new StepImage("obrazok1",
-                true, true, false));
-        traceList.add(new StepImage("obrazok2",
-                true, false, true));
+//        final ArrayList<StepImage> traceList = new ArrayList<>();
+//        traceList.add(new StepImage("obrazok1",
+//                true, true, false));
+//        traceList.add(new StepImage("obrazok2",
+//                true, false, true));
 
         /**
          * Nastaví sa pozícia na začiatok a skryje všetky šípky

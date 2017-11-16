@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<verticles building="FPV UMB">
+    <verticle id="0">
+        <edge from="0" to="1" img="test_fialova.png" dis="5" left="3"  forward="5"/>
+        <edge from="0" to="2" img="test_cervena.png" dis="4" right="1" forward="3" left="8"/>
+    </verticle>
+    <verticle id="1">
+        <edge from="1" to="0" img="test_dalsiafialova.png" dis="5" right="2"/>
+        <edge from="1" to="2" img="test_tmodra.png" dis="3" left="0" right="3" forward="8"/>
+        <edge from="1" to="5" img="test_hneda.png" dis="6" left="4"  forward="7"/>
+    </verticle>
+    <verticle id="2">
+        <edge from="2" to="0" img="test_inazlta.png" dis="1" left="1"/>
+        <edge from="2" to="1" img="test_modra.png" dis="3" left="6" right="0"/>
+        <edge from="2" to="3" img="test_neviemuzmodra.png" dis="2" right="4" forward="6" left="9"/>
+        <edge from="2" to="8" img="test_room1.png" dis="1"/>
+    </verticle>
+    <verticle id="3">
+        <edge from="3" to="4" img="test_oranzova.png" dis="2" forward="5"/>
+        <edge from="3" to="2" img="test_ruzova.png" dis="2" left="1" forward="0" right="8"/>
+        <edge from="3" to="6" img="test_seda.png" dis="6" right="7"/>
+        <edge from="3" to="9" img="test_room2.png" dis="1"/>
+    </verticle>
+    <verticle id="4">
+        <edge from="4" to="3" img="test_slabomodra.png" dis="2" left="2" right="6" forward="9"/>
+        <edge from="4" to="5" img="test_svetlozelena.png" dis="4" left="7" right="1"/>
+    </verticle>
+    <verticle id="5">
+        <edge from="5" to="1" img="test_zlta.png" dis="6" right="2" forward="0"/>
+        <edge from="5" to="4" img="test_zelena.png" dis="4" forward="3"/>
+        <edge from="5" to="7" img="test_siva.png" dis="9" left="6" forward="10"/>
+    </verticle>
+    <verticle id="6">
+        <edge from="6" to="3" img="TESTfialova.png" dis="6" left="4" forward="2" right="9"/>
+        <edge from="6" to="7" img="TESTcervena.png" dis="7" right="5" left="10"/>
+    </verticle>
+    <verticle id="7">
+        <edge from="7" to="5" img="test_modra.png" dis="9" right="4" forward="1"/>
+        <edge from="7" to="6" img="test_tmodra.png" dis="7" left="3"/>
+        <edge from="7" to="10" img="test_room3.png" dis="1"/>
+    </verticle>
+    <verticle name="TestRoom1" id="8">
+        <edge from="8" to="2" img="test_oranzova.png" dis="1" forward="1" left="3" right="0"/>
+    </verticle>
+    <verticle name="TestRoom2" id="9">
+        <edge from="9" to="3" img="test_hneda.png" dis="1" forwar="4" left="6" right="2"/>
+    </verticle>
+    <verticle name="TestRoom3" id="10">
+        <edge from="10" to="7" img="test_zelena.png" dis="1" forward="5" right="6"/>
+    </verticle>
+</verticles>
