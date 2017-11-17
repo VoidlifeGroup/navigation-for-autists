@@ -12,26 +12,26 @@ public class StepImage {
     private boolean leftArrow;
     private boolean forwardArrow;
 
-    public StepImage(String sceneImage, boolean rightArrow, boolean leftArrow, boolean forwardArrow){
+    public StepImage(String sceneImage, boolean rightArrow, boolean leftArrow, boolean forwardArrow) {
         this.sceneImage = sceneImage;
         this.rightArrow = rightArrow;
         this.leftArrow = leftArrow;
         this.forwardArrow = forwardArrow;
     }
 
-    public String getSceneImage(){
+    public String getSceneImage() {
         return this.sceneImage;
     }
 
-    public boolean getRight(){
+    public boolean getRight() {
         return this.rightArrow;
     }
 
-    public boolean getLeft(){
+    public boolean getLeft() {
         return this.leftArrow;
     }
 
-    public boolean getForward(){
+    public boolean getForward() {
         return this.forwardArrow;
     }
 

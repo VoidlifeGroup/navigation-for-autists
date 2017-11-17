@@ -13,7 +13,7 @@ public class Building implements Serializable {
         this.xml = xml;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -21,7 +21,7 @@ public class Building implements Serializable {
         return xml;
     }
 
-    ArrayList getRooms(){
+    ArrayList getRooms() {
         return listOfRooms;
     }
 }

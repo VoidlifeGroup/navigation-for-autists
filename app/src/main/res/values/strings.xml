@@ -4,4 +4,5 @@
     <string name="facebook_app_id">YOUR_APP_ID_HERE</string>
     <string name="listNames">Nejaky text</string>
     <string name="rowitem">RowItem</string>
+    <string name="mapswitch">MapSwitch</string>
 </resources>

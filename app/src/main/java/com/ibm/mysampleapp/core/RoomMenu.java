@@ -18,7 +18,7 @@ import java.io.InputStream;
  * Táto class slúži ako aktivita pre zobrazenie zoznamu miestností pre danú budovu.
  */
 
-public class RoomMenu extends AppCompatActivity implements BuildingList{
+public class RoomMenu extends AppCompatActivity implements RoomList{
 
     private Building b;
 
@@ -40,7 +40,7 @@ public class RoomMenu extends AppCompatActivity implements BuildingList{
                 (getResources().getIdentifier(b.getXml(),
                 "raw", getPackageName()));
         Graph g = new Graph(b.getName(), iStream);
-        rooms.addAll(g.rooms());
+        g.rooms();
 
         RoomAdapter roomAdapter = new RoomAdapter(rooms, getApplicationContext());
         ListView roomList = (ListView) findViewById(R.id.list);

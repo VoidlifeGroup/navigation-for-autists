@@ -10,8 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.ibm.mysampleapp.core.Building;
 import com.ibm.mysampleapp.R;
+import com.ibm.mysampleapp.core.Building;
 
 import java.util.ArrayList;
 
@@ -34,8 +34,9 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
     /**
      * Konštruktor slúži na načítanie dát z ArrayListu budov a všetkých dát z classy ktorá volá
      * tento konšturktor. Implementuje sa tu aj layout výzoru riadka listu.
-     * @param data      načítanie dát ArrayListu
-     * @param context   načítanie všetkých dát z classy ktorá volá tento konštruktor
+     *
+     * @param data    načítanie dát ArrayListu
+     * @param context načítanie všetkých dát z classy ktorá volá tento konštruktor
      */
     public BuildingAdapter(ArrayList<Building> data, Context context) {
         super(context, R.layout.row_item, data);
@@ -53,10 +54,10 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
      * animácia listu ktorej údaje sú v /res/anim/. Ako posledné sa nastaví spôsob vypisovania
      * objektu ArrayListu a vráti sa kompletný vlastný View.
      *
-     * @param position      pozícia objektu v ArrayListe
-     * @param convertView   znovu použitý už vytvorený a uložený View
-     * @param parent        ukladá parametre rozloženia daného View
-     * @return              vráti kompletné View, ktoré sa vyrenderuje na obrazovku
+     * @param position    pozícia objektu v ArrayListe
+     * @param convertView znovu použitý už vytvorený a uložený View
+     * @param parent      ukladá parametre rozloženia daného View
+     * @return vráti kompletné View, ktoré sa vyrenderuje na obrazovku
      */
     @NonNull
     @Override
