@@ -13,7 +13,9 @@ import android.widget.ListView;
 
 import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.RoomAdapter;
+import com.ibm.mysampleapp.algo.Dijkstra;
 import com.ibm.mysampleapp.graph.Graph;
+import com.ibm.mysampleapp.graph.Room;
 
 import java.io.InputStream;
 
@@ -55,7 +57,12 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         RoomAdapter roomAdapter = new RoomAdapter(rooms, getApplicationContext());
         ListView roomList = (ListView) findViewById(R.id.list);
         roomList.setAdapter(roomAdapter);
+
         roomList.setOnItemClickListener((parent, view, position, id) -> {
+            Dijkstra dijkstra = new Dijkstra();
+            Room room = roomAdapter.getItem(position);
+            g.traceList(dijkstra.algoCompute(g.matrix(), g.getNumberOfVerticles(),
+                    0, room.getId()));
             startActivity(autista4);
         });
 
