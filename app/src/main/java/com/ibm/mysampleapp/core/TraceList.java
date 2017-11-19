@@ -10,6 +10,8 @@ public interface TraceList {
 
     ArrayList<StepImage> traceList = new ArrayList<>();
 
-    default void clearTraceList() { traceList.clear(); }
+    default void clearTraceList() {
+        traceList.clear();
+    }
 
 }

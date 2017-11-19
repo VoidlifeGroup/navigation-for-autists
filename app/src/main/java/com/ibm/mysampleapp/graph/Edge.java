@@ -12,7 +12,7 @@ public class Edge {
     private final Integer forwardArrowIdVerticle;
 
     public Edge(int fromIdVerticle, int toIdVerticle, int distance, Integer leftArrowIdVerticle,
-                Integer rightArrowIdVerticle, Integer forwardArrowIdVerticle, String image){
+                Integer rightArrowIdVerticle, Integer forwardArrowIdVerticle, String image) {
         this.fromIdVerticle = fromIdVerticle;
         this.toIdVerticle = toIdVerticle;
         this.distance = distance;

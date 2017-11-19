@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.ibm.mysampleapp.core.RoomMenu">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/content_main" />
+    <!-- Dummy layout na autofocus pri štarte aktivity -->
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px"/>
 
+    <EditText
+        android:id="@+id/room_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/search_icon"
+        android:layout_toEndOf="@+id/search_icon"
+        android:hint="@string/edittext_room_hint"
+        android:padding="9dp"
+        android:textSize="20sp"
+        android:nextFocusUp="@id/room_input"
+        android:nextFocusLeft="@id/room_input"
+        android:inputType="text"
+        android:singleLine="true"
+        />
 
-</android.support.design.widget.CoordinatorLayout>
+    <ImageView
+        android:id="@+id/search_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:padding="11dp"
+        android:src="@drawable/search"
+        android:contentDescription="@string/edittext_search_icon"
+        />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/room_input"
+        />
+
+</RelativeLayout>

@@ -3,8 +3,9 @@ package com.ibm.mysampleapp.parser;
 import android.util.Xml;
 
 import com.ibm.mysampleapp.core.Building;
-import com.ibm.mysampleapp.graph.*;
+import com.ibm.mysampleapp.graph.Edge;
 import com.ibm.mysampleapp.graph.Room;
+import com.ibm.mysampleapp.graph.Verticle;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -91,7 +92,7 @@ public class XmlPullParserNFA {
         }
         return verticles;
     }
-    
+
 
     private Verticle readVerticle(XmlPullParser parser) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, ns, "verticle");
@@ -109,7 +110,7 @@ public class XmlPullParserNFA {
                 skip(parser);
             }
         }
-        if(roomName == null){
+        if (roomName == null) {
             return new Verticle(id, edges);
         } else {
             return new Room(id, edges, roomName);
@@ -125,13 +126,13 @@ public class XmlPullParserNFA {
         int dis = Integer.parseInt(parser.getAttributeValue(null, "dis"));
         String l, r, u;
         Integer left = null, right = null, forward = null;
-        if((l = parser.getAttributeValue(null, "left")) != null){
+        if ((l = parser.getAttributeValue(null, "left")) != null) {
             left = Integer.parseInt(l);
         }
-        if((r = parser.getAttributeValue(null, "right")) != null){
+        if ((r = parser.getAttributeValue(null, "right")) != null) {
             right = Integer.parseInt(r);
         }
-        if((u = parser.getAttributeValue(null, "forward")) != null){
+        if ((u = parser.getAttributeValue(null, "forward")) != null) {
             forward = Integer.parseInt(u);
         }
         //int left = Integer.parseInt(parser.getAttributeValue(null, "left"));
