@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.ibm.mysampleapp.R;
@@ -33,8 +34,9 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
         final Intent autista3 = new Intent(BuildingMenu.this,
                 RoomMenu.class);
 
-
+        final EditText etSearchB = (EditText) findViewById(R.id.building_input);
         final Context context = getApplicationContext();
+
         InputStream iStream = context.getResources().openRawResource(R.raw.buildings);
         XmlPullParserNFA p = new XmlPullParserNFA();
         ArrayList<Building> buildings = new ArrayList<>();
@@ -43,6 +45,11 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
         } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
         }
+
+        if (!buildingNames.isEmpty()) {
+            clearBuildingList();
+        }
+
         buildingNames.addAll(buildings);
 
         final BuildingAdapter cAdapter = new BuildingAdapter(buildingNames, getApplicationContext());
@@ -52,6 +59,23 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
             Building b = cAdapter.getItem(position);
             autista3.putExtra("building", b);
             startActivity(autista3);
+        });
+
+        etSearchB.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Call back the Adapter with current character to Filter
+                cAdapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
         });
     }
 }

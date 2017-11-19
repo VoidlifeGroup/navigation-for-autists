@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Building implements Serializable {
     private String name;
     private String xml;
-    private ArrayList listOfRooms;
 
     public Building(String name, String xml) {
         this.name = name;
@@ -21,7 +20,4 @@ public class Building implements Serializable {
         return xml;
     }
 
-    ArrayList getRooms() {
-        return listOfRooms;
-    }
 }

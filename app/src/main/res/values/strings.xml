@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Navigation for autists</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Nastavenia</string>
     <string name="facebook_app_id">YOUR_APP_ID_HERE</string>
     <string name="listNames">Nejaky text</string>
-    <string name="rowitem">RowItem</string>
+    <string name="rowitem">String na ukážku textu v DesignView</string>
     <string name="mapswitch">MapSwitch</string>
+    <string name="edittext_search_icon">small search icon for edittext</string>
+    <string name="edittext_build_hint">Zadaj názov budovy…</string>
+    <string name="edittext_room_hint">Zadaj názov miestnosti…</string>
 </resources>
