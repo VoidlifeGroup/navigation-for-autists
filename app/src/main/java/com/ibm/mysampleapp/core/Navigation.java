@@ -21,6 +21,7 @@ public class Navigation extends AppCompatActivity implements TraceList {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        waitMe(); //caka kym dijkstra neskonci
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.building_navigation);
@@ -45,12 +46,6 @@ public class Navigation extends AppCompatActivity implements TraceList {
          * Každá trasa bude obsahovať záchytné body a na jej aktivovanie sa použije button.
          */
 
-
-//        final ArrayList<StepImage> traceList = new ArrayList<>();
-//        traceList.add(new StepImage("obrazok1",
-//                true, true, false));
-//        traceList.add(new StepImage("obrazok2",
-//                true, false, true));
 
         /**
          * Nastaví sa pozícia na začiatok a skryje všetky šípky

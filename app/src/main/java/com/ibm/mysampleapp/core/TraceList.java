@@ -14,4 +14,16 @@ public interface TraceList {
         traceList.clear();
     }
 
+    default void waitMe(){
+        try {
+            traceList.wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    default void notifyMe(){
+        traceList.notify();
+    }
+
 }

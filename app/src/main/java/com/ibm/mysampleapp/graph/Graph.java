@@ -117,6 +117,7 @@ public class Graph implements RoomList, TraceList {
                 break;
             }
         }
+//        notifyMe();
         for (StepImage stepImage1 : traceList) {
             System.out.println("obr: " + stepImage1.getSceneImage());
             System.out.println("F: " + stepImage1.getForward());
