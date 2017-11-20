@@ -1,6 +1,5 @@
 package com.ibm.mysampleapp.core;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,11 +18,6 @@ import com.ibm.bluemix.appid.android.api.AppID;
 import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mysampleapp.R;
-import com.ibm.mysampleapp.algo.Dijkstra;
-import com.ibm.mysampleapp.graph.Graph;
-
-import java.io.InputStream;
-import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements BuildingList {
@@ -105,22 +99,6 @@ public class MainActivity extends AppCompatActivity implements BuildingList {
             }
 
         });
-// !!!!!!!!!!!! zatial to nemazte
-//        Context context = getApplicationContext();
-//        InputStream iStream = context.getResources().openRawResource(R.raw.testovaci_graf);
-//
-//        Graph g = new Graph("Test", iStream);
-//        int[][] matica = g.matrix();
-//        Dijkstra dijk = new Dijkstra();
-//        ArrayList<Integer> al;
-//        al = dijk.algoCompute(matica, g.getNumberOfVerticles(), 10, 8);
-//        System.out.println("velkost arraylistu al: " + al.size());
-//        for (int i = 0; i < al.size(); i++) {
-//            System.out.println("Cesta ide takto(id vrcholov): " + al.get(i));
-//        }
-//        g.traceList(al);
-
-
 
     }
 

@@ -35,22 +35,8 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
                 RoomMenu.class);
 
         final EditText etSearchB = (EditText) findViewById(R.id.building_input);
-        final Context context = getApplicationContext();
 
-        InputStream iStream = context.getResources().openRawResource(R.raw.buildings);
-        XmlPullParserNFA p = new XmlPullParserNFA();
-        ArrayList<Building> buildings = new ArrayList<>();
-        try {
-            buildings = p.parseBuildings(iStream);
-        } catch (XmlPullParserException | IOException e) {
-            e.printStackTrace();
-        }
-
-        if (!buildingNames.isEmpty()) {
-            clearBuildingList();
-        }
-
-        buildingNames.addAll(buildings);
+        readBuildings();
 
         final BuildingAdapter cAdapter = new BuildingAdapter(buildingNames, getApplicationContext());
         ListView buildingList = (ListView) findViewById(R.id.list);
@@ -77,5 +63,26 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
         });
+    }
+
+    /**
+     * Nacita budovy do listu z xml suboru
+     * Pred naplnenim zoznamu ho zmaze
+     * */
+    private void readBuildings(){
+        Context context = getApplicationContext();
+        InputStream iStream = context.getResources().openRawResource(R.raw.buildings);
+        XmlPullParserNFA p = new XmlPullParserNFA();
+        ArrayList<Building> buildings = new ArrayList<>();
+
+        try {
+            buildings = p.parseBuildings(iStream);
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+
+
+        clearBuildingList();
+        buildingNames.addAll(buildings);
     }
 }

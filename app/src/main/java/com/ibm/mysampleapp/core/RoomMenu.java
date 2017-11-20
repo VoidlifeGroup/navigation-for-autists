@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -25,7 +23,8 @@ import java.io.InputStream;
 
 public class RoomMenu extends AppCompatActivity implements RoomList {
 
-    private Building b;
+    private Building building;
+    private Graph graph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +37,7 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
 
         final EditText etSearchB = (EditText) findViewById(R.id.room_input);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            b = (Building) getIntent().getSerializableExtra("building");
-        }
-        Context context = getApplicationContext();
-        InputStream iStream = context.getResources().openRawResource
-                (getResources().getIdentifier(b.getXml(),
-                        "raw", getPackageName()));
-        Graph g = new Graph(b.getName(), iStream);
-
-        if (!rooms.isEmpty()) {
-            clearRoomList();
-        }
-
-        g.rooms();
+        readRooms();
 
         RoomAdapter roomAdapter = new RoomAdapter(rooms, getApplicationContext());
         ListView roomList = (ListView) findViewById(R.id.list);
@@ -61,8 +46,8 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         roomList.setOnItemClickListener((parent, view, position, id) -> {
             Dijkstra dijkstra = new Dijkstra();
             Room room = roomAdapter.getItem(position);
-            g.traceList(dijkstra.algoCompute(g.matrix(), g.getNumberOfVerticles(),
-                    0, room.getId()));
+            graph.traceList(dijkstra.algoCompute(graph.matrix(), graph.getNumberOfVerticles(),
+                    0, room.getId())); //TODO prednastavene id 0
             startActivity(autista4);
         });
 
@@ -81,5 +66,20 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
         });
+    }
+
+    private void readRooms(){
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            building = (Building) getIntent().getSerializableExtra("building");
+        }
+        Context context = getApplicationContext();
+        InputStream iStream = context.getResources().openRawResource
+                (getResources().getIdentifier(building.getXml(),
+                        "raw", getPackageName()));
+        graph = new Graph(building.getName(), iStream);
+
+        clearRoomList();
+        graph.rooms();
     }
 }

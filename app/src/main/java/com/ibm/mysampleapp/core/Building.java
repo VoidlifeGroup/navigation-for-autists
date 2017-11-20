@@ -1,7 +1,6 @@
 package com.ibm.mysampleapp.core;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Building implements Serializable {
     private String name;
