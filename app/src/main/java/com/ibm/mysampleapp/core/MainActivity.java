@@ -1,9 +1,9 @@
 package com.ibm.mysampleapp.core;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -19,6 +19,8 @@ import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mysampleapp.R;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,23 +28,27 @@ public class MainActivity extends AppCompatActivity {
     private Datastore ds;
     private DatastoreManager manager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Bundle extras = getIntent().getExtras();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        Button chooseBuilding = (Button) findViewById(R.id.choose_building);
+        Button chooseFrom = (Button) findViewById(R.id.choose_from);
+        Button chooseTo = (Button) findViewById(R.id.choose_to);
+        Button searchBttn = (Button) findViewById(R.id.search_button);
 
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        Typeface centuryGothicRglr = Typeface.createFromAsset(getAssets(),
+                "fonts/century_gothic_regular.ttf");
+        chooseBuilding.setTypeface(centuryGothicRglr);
+        chooseFrom.setTypeface(centuryGothicRglr);
+        chooseTo.setTypeface(centuryGothicRglr);
+        searchBttn.setTypeface(centuryGothicRglr);
 
         // Core SDK must be initialized to interact with Bluemix Mobile services.
         BMSClient.getInstance().initialize(getApplicationContext(), BMSClient.REGION_UK);
@@ -88,18 +94,48 @@ public class MainActivity extends AppCompatActivity {
             android.util.Log.e("TAG", e.getMessage(), e);
         }
 
-        final Intent autista2 = new Intent(MainActivity.this, BuildingMenu.class);
 
-        Button buildingMenu = (Button) findViewById(R.id.button);
+        //----------------------------------------------------------------------------
+        //Prepinanie medzi aktivitami
+        //TODO kedze vzniklo kopec bugov pri tomto prepinaní a spuštaní a zachovavaní stavov tak to
+        //vsetko treba pofixovat... pravdepodobne sa to bude riešiť cez Enum, ked zistií kde
+        //vznikli bugy
 
-        buildingMenu.setOnClickListener(new View.OnClickListener() {
+        if (extras != null && (extras.containsKey("name_building"))) {
+            chooseBuilding.setText((String) getIntent().getSerializableExtra("name_building"));
+            chooseBuilding.setTextColor(Color.BLACK);
+            chooseFrom.setText("Vchod");
+            chooseFrom.setTextColor(Color.BLACK);
+        }
+
+        if (extras != null && extras.containsKey("room_name")){
+            chooseTo.setText((String) getIntent().getSerializableExtra(
+                    "room_name"));
+            chooseTo.setTextColor(Color.BLACK);
+        }
+
+        final Intent goToBuildingMenu = new Intent(MainActivity.this,
+                BuildingMenu.class);
+
+        chooseBuilding.setOnClickListener(v -> startActivity(goToBuildingMenu));
+
+        final Intent goToRoomMenu = new Intent(MainActivity.this, RoomMenu.class);
+
+        chooseTo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(autista2);
+            public void onClick(View view) {
+                Building b = null;
+                if(extras != null){
+                    b = (Building) getIntent().getSerializableExtra("building");
+                }
+                goToRoomMenu.putExtra("building", b);
+                startActivity(goToRoomMenu);
             }
-
         });
 
+        final Intent goToNavigation = new Intent(MainActivity.this, Navigation.class);
+
+        searchBttn.setOnClickListener(v -> startActivity(goToNavigation));
     }
 
     @Override

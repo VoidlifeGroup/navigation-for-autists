@@ -31,8 +31,8 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
 
         setContentView(R.layout.room_menu);
 
-        final Intent autista4 = new Intent(RoomMenu.this,
-                Navigation.class);
+        final Intent goToMainActivity = new Intent(RoomMenu.this,
+                MainActivity.class);
 
         final EditText etSearchB = (EditText) findViewById(R.id.room_input);
 
@@ -45,7 +45,8 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         roomListView.setOnItemClickListener((parent, view, position, id) -> {
             Room room = roomAdapter.getItem(position);
             graph.traceList(0, room.getId());//TODO prednastavene id 0
-            startActivity(autista4);
+            goToMainActivity.putExtra("room_name", roomAdapter.getItem(position).getName());
+            startActivity(goToMainActivity);
         });
 
         etSearchB.addTextChangedListener(new TextWatcher() {
@@ -65,7 +66,7 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         });
     }
 
-    private void readRooms(){
+    private void readRooms() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             building = (Building) getIntent().getSerializableExtra("building");

@@ -123,7 +123,7 @@ public class RoomAdapter extends ArrayAdapter<Room> implements Filterable{
     /**
      * Metóda ktorá vracia filter ktorý sa použije.
      *
-     * @return vracia filter typu BuildingFilter
+     * @return vracia filter typu RoomFilter
      */
     @NonNull
     public Filter getFilter() {

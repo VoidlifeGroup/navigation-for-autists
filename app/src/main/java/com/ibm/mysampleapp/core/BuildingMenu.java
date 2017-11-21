@@ -31,8 +31,8 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
 
         setContentView(R.layout.building_menu);
 
-        final Intent autista3 = new Intent(BuildingMenu.this,
-                RoomMenu.class);
+        final Intent goToMainActivity = new Intent(BuildingMenu.this,
+                MainActivity.class);
 
         final EditText etSearchB = (EditText) findViewById(R.id.building_input);
 
@@ -43,8 +43,9 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
         buildingListView.setAdapter(cAdapter);
         buildingListView.setOnItemClickListener((parent, view, position, id) -> {
             Building b = cAdapter.getItem(position);
-            autista3.putExtra("building", b);
-            startActivity(autista3);
+            goToMainActivity.putExtra("building", b);
+            goToMainActivity.putExtra("name_building", cAdapter.getItem(position).getName());
+            startActivity(goToMainActivity);
         });
 
         etSearchB.addTextChangedListener(new TextWatcher() {
