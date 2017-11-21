@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 public interface RoomList {
 
-    ArrayList<Room> rooms = new ArrayList<>();
+    ArrayList<Room> roomList = new ArrayList<>();
 
     default void clearRoomList() {
-        rooms.clear();
+        if (!roomList.isEmpty()) {
+            roomList.clear();
+        }
     }
 
 }

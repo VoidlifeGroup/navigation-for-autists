@@ -7,32 +7,15 @@ package com.ibm.mysampleapp.core;
 
 public class StepImage {
 
-    private String sceneImage;
-    private boolean rightArrow;
-    private boolean leftArrow;
-    private boolean forwardArrow;
+    private final String sceneImage;
 
-    public StepImage(String sceneImage, boolean rightArrow, boolean leftArrow, boolean forwardArrow) {
+    public StepImage(String sceneImage) {
         this.sceneImage = sceneImage;
-        this.rightArrow = rightArrow;
-        this.leftArrow = leftArrow;
-        this.forwardArrow = forwardArrow;
     }
 
     public String getSceneImage() {
         return this.sceneImage;
     }
 
-    public boolean getRight() {
-        return this.rightArrow;
-    }
-
-    public boolean getLeft() {
-        return this.leftArrow;
-    }
-
-    public boolean getForward() {
-        return this.forwardArrow;
-    }
 
 }

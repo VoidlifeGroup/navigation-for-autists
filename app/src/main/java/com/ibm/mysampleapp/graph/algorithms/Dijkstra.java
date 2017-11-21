@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.algo;
+package com.ibm.mysampleapp.graph.algorithms;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,11 +39,8 @@ public class Dijkstra {
                         distance[i] = min + matrix[nextVerticle][i];
                         preD[i] = nextVerticle;
                     }
-
                 }
-
             }
-
         }
         // Názorné výpisy
         for (int i = 0; i < numberOfVerticles; i++)

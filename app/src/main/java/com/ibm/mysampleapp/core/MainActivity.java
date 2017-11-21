@@ -20,7 +20,7 @@ import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mysampleapp.R;
 
 
-public class MainActivity extends AppCompatActivity implements BuildingList {
+public class MainActivity extends AppCompatActivity {
 
     private java.net.URI cloudantUri;
     private Datastore ds;

@@ -8,14 +8,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ListView;
+import java.io.InputStream;
 
 import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.RoomAdapter;
-import com.ibm.mysampleapp.algo.Dijkstra;
 import com.ibm.mysampleapp.graph.Graph;
 import com.ibm.mysampleapp.graph.Room;
 
-import java.io.InputStream;
 
 /**
  * Táto class slúži ako aktivita pre zobrazenie zoznamu miestností pre danú budovu.
@@ -39,15 +38,13 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
 
         readRooms();
 
-        RoomAdapter roomAdapter = new RoomAdapter(rooms, getApplicationContext());
-        ListView roomList = (ListView) findViewById(R.id.list);
-        roomList.setAdapter(roomAdapter);
+        RoomAdapter roomAdapter = new RoomAdapter(roomList, getApplicationContext());
+        ListView roomListView = (ListView) findViewById(R.id.list);
+        roomListView.setAdapter(roomAdapter);
 
-        roomList.setOnItemClickListener((parent, view, position, id) -> {
-            Dijkstra dijkstra = new Dijkstra();
+        roomListView.setOnItemClickListener((parent, view, position, id) -> {
             Room room = roomAdapter.getItem(position);
-            graph.traceList(dijkstra.algoCompute(graph.matrix(), graph.getNumberOfVerticles(),
-                    0, room.getId())); //TODO prednastavene id 0
+            graph.traceList(0, room.getId());//TODO prednastavene id 0
             startActivity(autista4);
         });
 

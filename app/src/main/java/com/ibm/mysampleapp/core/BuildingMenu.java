@@ -38,10 +38,10 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
 
         readBuildings();
 
-        final BuildingAdapter cAdapter = new BuildingAdapter(buildingNames, getApplicationContext());
-        ListView buildingList = (ListView) findViewById(R.id.list);
-        buildingList.setAdapter(cAdapter);
-        buildingList.setOnItemClickListener((parent, view, position, id) -> {
+        final BuildingAdapter cAdapter = new BuildingAdapter(buildingList, getApplicationContext());
+        ListView buildingListView = (ListView) findViewById(R.id.list);
+        buildingListView.setAdapter(cAdapter);
+        buildingListView.setOnItemClickListener((parent, view, position, id) -> {
             Building b = cAdapter.getItem(position);
             autista3.putExtra("building", b);
             startActivity(autista3);
@@ -81,8 +81,7 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
             e.printStackTrace();
         }
 
-
         clearBuildingList();
-        buildingNames.addAll(buildings);
+        buildingList.addAll(buildings);
     }
 }
