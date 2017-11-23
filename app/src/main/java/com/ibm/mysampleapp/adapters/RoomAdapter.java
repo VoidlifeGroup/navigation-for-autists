@@ -13,7 +13,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.ibm.mysampleapp.R;
-import com.ibm.mysampleapp.core.Building;
 import com.ibm.mysampleapp.graph.Room;
 
 import java.util.ArrayList;
@@ -123,7 +122,7 @@ public class RoomAdapter extends ArrayAdapter<Room> implements Filterable{
     /**
      * Metóda ktorá vracia filter ktorý sa použije.
      *
-     * @return vracia filter typu BuildingFilter
+     * @return vracia filter typu RoomFilter
      */
     @NonNull
     public Filter getFilter() {

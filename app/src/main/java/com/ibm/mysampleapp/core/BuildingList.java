@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 public interface BuildingList {
 
-    ArrayList<Building> buildingNames = new ArrayList<>();
+    ArrayList<Building> buildingList = new ArrayList<>();
 
     default void clearBuildingList() {
-        buildingNames.clear();
+        if (!buildingList.isEmpty()) {
+            buildingList.clear();
+        }
     }
 
 }

@@ -6,18 +6,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import java.io.InputStream;
 
 import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.RoomAdapter;
-import com.ibm.mysampleapp.algo.Dijkstra;
 import com.ibm.mysampleapp.graph.Graph;
 import com.ibm.mysampleapp.graph.Room;
+import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
-import java.io.InputStream;
 
 /**
  * Táto class slúži ako aktivita pre zobrazenie zoznamu miestností pre danú budovu.
@@ -25,7 +23,8 @@ import java.io.InputStream;
 
 public class RoomMenu extends AppCompatActivity implements RoomList {
 
-    private Building b;
+    private Building building;
+    private Graph graph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,37 +32,24 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
 
         setContentView(R.layout.room_menu);
 
-        final Intent autista4 = new Intent(RoomMenu.this,
-                Navigation.class);
+        final Intent goToMainActivity = new Intent(RoomMenu.this,
+                MainActivity.class);
 
         final EditText etSearchB = (EditText) findViewById(R.id.room_input);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            b = (Building) getIntent().getSerializableExtra("building");
-        }
-        Context context = getApplicationContext();
-        InputStream iStream = context.getResources().openRawResource
-                (getResources().getIdentifier(b.getXml(),
-                        "raw", getPackageName()));
-        Graph g = new Graph(b.getName(), iStream);
+        readRooms();
 
-        if (!rooms.isEmpty()) {
-            clearRoomList();
-        }
+        RoomAdapter roomAdapter = new RoomAdapter(roomList, getApplicationContext());
+        ListView roomListView = (ListView) findViewById(R.id.list);
+        roomListView.setAdapter(roomAdapter);
 
-        g.rooms();
-
-        RoomAdapter roomAdapter = new RoomAdapter(rooms, getApplicationContext());
-        ListView roomList = (ListView) findViewById(R.id.list);
-        roomList.setAdapter(roomAdapter);
-
-        roomList.setOnItemClickListener((parent, view, position, id) -> {
-            Dijkstra dijkstra = new Dijkstra();
+        roomListView.setOnItemClickListener((parent, view, position, id) -> {
             Room room = roomAdapter.getItem(position);
-            g.traceList(dijkstra.algoCompute(g.matrix(), g.getNumberOfVerticles(),
-                    0, room.getId()));
-            startActivity(autista4);
+            graph.traceList(0, room.getId());//TODO prednastavene id 0
+            Dijkstra dijkstra = graph.getDijkstra();
+            goToMainActivity.putExtra("dijkstra", dijkstra);
+            goToMainActivity.putExtra("room_name", roomAdapter.getItem(position).getName());
+            startActivity(goToMainActivity);
         });
 
         etSearchB.addTextChangedListener(new TextWatcher() {
@@ -81,5 +67,20 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
         });
+    }
+
+    private void readRooms() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            building = (Building) getIntent().getSerializableExtra("building");
+        }
+        Context context = getApplicationContext();
+        InputStream iStream = context.getResources().openRawResource
+                (getResources().getIdentifier(building.getXml(),
+                        "raw", getPackageName()));
+        graph = new Graph(building.getName(), iStream);
+
+        clearRoomList();
+        graph.rooms();
     }
 }

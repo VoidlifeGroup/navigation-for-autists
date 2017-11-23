@@ -4,8 +4,15 @@
     <string name="facebook_app_id">YOUR_APP_ID_HERE</string>
     <string name="listNames">Nejaky text</string>
     <string name="rowitem">String na ukážku textu v DesignView</string>
-    <string name="mapswitch">MapSwitch</string>
+    <string name="mapswitch">Hľadaj</string>
     <string name="edittext_search_icon">small search icon for edittext</string>
     <string name="edittext_build_hint">Zadaj názov budovy…</string>
     <string name="edittext_room_hint">Zadaj názov miestnosti…</string>
+    <string name="center_background_box">center_background_box</string>
+    <string name="last_route">Posledné cesty</string>
+    <string name="last_route_bar">last_route_bar</string>
+    <string name="last_dest_bttn">last_dest_bttn</string>
+    <string name="choose_from">Odkiaľ ...</string>
+    <string name="choose_building">Vyber budovu ...</string>
+    <string name="choose_to">Kam ...</string>
 </resources>
