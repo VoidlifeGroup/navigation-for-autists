@@ -8,14 +8,18 @@ package com.ibm.mysampleapp.core;
 public class StepImage {
 
     private final String sceneImage;
+    private final int distance;
 
-    public StepImage(String sceneImage) {
+    public StepImage(String sceneImage, int distance) {
         this.sceneImage = sceneImage;
+        this.distance = distance;
     }
 
     public String getSceneImage() {
         return this.sceneImage;
     }
 
-
+    public int getDistance() {
+        return distance;
+    }
 }

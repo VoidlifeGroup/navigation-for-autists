@@ -6,9 +6,6 @@ import java.util.Collections;
 
 public class Dijkstra implements Serializable {
 
-    private int[] tempDistance;
-    private ArrayList<Integer> tempResults;
-
     public ArrayList<Integer> algoCompute(int[][] matrix, int numberOfVerticles, int startID,
                                           int endID) {
 
@@ -75,16 +72,7 @@ public class Dijkstra implements Serializable {
 
         result.add(startID);
         Collections.reverse(result);
-        tempDistance = distance;
-        tempResults = result;
         return result;
     }
 
-    public int[] getTempDistance(){
-        return tempDistance;
-    }
-
-    public ArrayList<Integer> getTempResults(){
-        return tempResults;
-    }
 }
