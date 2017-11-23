@@ -83,7 +83,7 @@ public class Graph implements RoomList, TraceList {
                 if (verticle.getId() == result.get(i)) { //najde zvoleny vrchol
                     for (Edge edge : verticle.getEdges()) { //prechadza hrany
                         if (edge.getToIdVerticle() == result.get(i + 1)) { //najde hranu
-                            traceList.add(new StepImage(edge.getImage())); //prida obrazok do zoznamu
+                            traceList.add(new StepImage(edge.getImage(), edge.getDistance()));
                             break;
                         }
                     }

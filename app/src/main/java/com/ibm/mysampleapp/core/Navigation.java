@@ -19,47 +19,28 @@ import java.util.ArrayList;
  */
 public class Navigation extends AppCompatActivity implements TraceList {
 
-    int pozicia;
-    private Dijkstra dijkstra;
-    private int[] distances;
-    private int distance;
-    private ArrayList<Integer> results;
-    private TextView distanceView;
+    private int pozicia = 0;
+    private int distance = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.building_navigation);
-
+        TextView distanceView;
         final ImageView sceneImage = (ImageView) findViewById(R.id.imageView);
         final Button forwardArrow = (Button) findViewById(R.id.buttonForward);
         distanceView = (TextView) findViewById(R.id.distance);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            dijkstra = (Dijkstra) getIntent().getSerializableExtra("dijkstra");
-        }
-        //V tomto ife sa vypocita vzdialenost zo zaciatku do ciela - zobrazuje sa v textview
-        if(dijkstra != null){
-            distances = dijkstra.getTempDistance();
-            results = dijkstra.getTempResults();
-            distance = distances[results.get(results.size() - 1)];
-            String message = "Vzdialenosť do ciela je: " + distance +
-                    (distance <= 2 && distance > 0 ? (distance == 2 ? " metre." : " meter.") :
-                            " metrov.");
-            distanceView.setText(message);
-        }
-        pozicia = 0;
         forwardArrow.setVisibility(View.VISIBLE);
-        update(sceneImage, traceList, pozicia);
+        update(sceneImage, traceList, pozicia, distanceView);
 
         forwardArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pozicia++;
-                update(sceneImage, traceList, pozicia);
+                update(sceneImage, traceList, pozicia, distanceView);
                 // Vypne zobrazovanie sipky pokial sa dostaneme do ciela.
-                if(pozicia == results.size() - 2){
+                if(pozicia == traceList.size() - 1){
                     forwardArrow.setVisibility(View.GONE);
                 }
             }
@@ -70,7 +51,8 @@ public class Navigation extends AppCompatActivity implements TraceList {
      * Metoda, ktorá ziska zo stringu ciselne id obrazka
      * a nasledne ho zobrazi na obrazovke
      */
-    private void update(ImageView sceneImage, ArrayList<StepImage> traceList, int pozicia) {
+    private void update(ImageView sceneImage, ArrayList<StepImage> traceList,
+                        int pozicia, TextView distanceView) {
 
         int imageID = sceneImage.getContext().getResources().getIdentifier(
                 traceList.get(pozicia).getSceneImage(),
@@ -78,13 +60,32 @@ public class Navigation extends AppCompatActivity implements TraceList {
                 sceneImage.getContext().getPackageName()
         );
         sceneImage.setImageResource(imageID);
+
         // Tu sa pri kazdom pohybe do noveho vrcholu vzdialenost prepocitava
-        if(dijkstra != null){
-            distance = distances[results.get(results.size() - 1)] - distances[results.get(pozicia)];
-            String message = "Vzdialenosť do ciela je: " + distance +
-                    (distance <= 2 && distance > 0 ? (distance == 2 ? " metre." : " meter.") :
-                            " metrov.");
-            distanceView.setText(message);
-        }
+        distanceView.setText(distanceMessage());
+
     }
+
+    /**
+     * Ak je na zaciatku scita cely zoznam vzdialenosti
+     * ak je niekde na ceste odcita poslednu prejdenu vzdialenost
+     * @return sprava na zobrazenie
+     */
+    private String distanceMessage(){
+        if (pozicia == 0) {
+            for (StepImage stepImage : traceList) {
+                distance += stepImage.getDistance();
+            }
+        }
+        else{
+            distance -= traceList.get(pozicia-1).getDistance();
+        }
+
+        String message = "Vzdialenosť do ciela je: " + distance +
+                (distance <= 4 && distance > 0 ? (distance >= 2 ? " metre." : " meter.") :
+                        " metrov.");
+
+        return message;
+    }
+
 }
