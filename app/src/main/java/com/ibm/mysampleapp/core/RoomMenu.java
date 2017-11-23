@@ -14,6 +14,7 @@ import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.RoomAdapter;
 import com.ibm.mysampleapp.graph.Graph;
 import com.ibm.mysampleapp.graph.Room;
+import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 
 /**
@@ -45,6 +46,8 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         roomListView.setOnItemClickListener((parent, view, position, id) -> {
             Room room = roomAdapter.getItem(position);
             graph.traceList(0, room.getId());//TODO prednastavene id 0
+            Dijkstra dijkstra = graph.getDijkstra();
+            goToMainActivity.putExtra("dijkstra", dijkstra);
             goToMainActivity.putExtra("room_name", roomAdapter.getItem(position).getName());
             startActivity(goToMainActivity);
         });

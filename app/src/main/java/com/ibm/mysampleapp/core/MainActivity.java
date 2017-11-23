@@ -18,6 +18,7 @@ import com.ibm.bluemix.appid.android.api.AppID;
 import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mysampleapp.R;
+import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 import java.util.Objects;
 
@@ -125,8 +126,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Building b = null;
-                if(extras != null){
+                if(extras != null && (extras.containsKey("building"))){
                     b = (Building) getIntent().getSerializableExtra("building");
+                }
+                if (extras != null && (extras.containsKey("dijkstra"))) {
+                    Dijkstra dijkstra = (Dijkstra) getIntent()
+                            .getSerializableExtra("dijkstra");
+                    goToRoomMenu.putExtra("dijkstra", dijkstra);
                 }
                 goToRoomMenu.putExtra("building", b);
                 startActivity(goToRoomMenu);
@@ -135,7 +141,14 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent goToNavigation = new Intent(MainActivity.this, Navigation.class);
 
-        searchBttn.setOnClickListener(v -> startActivity(goToNavigation));
+        searchBttn.setOnClickListener((View v) -> {
+            if (extras != null && (extras.containsKey("dijkstra"))) {
+                Dijkstra dijkstra = (Dijkstra) getIntent()
+                        .getSerializableExtra("dijkstra");
+                goToNavigation.putExtra("dijkstra", dijkstra);
+            }
+            startActivity(goToNavigation);
+        });
     }
 
     @Override

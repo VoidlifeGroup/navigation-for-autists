@@ -1,9 +1,13 @@
 package com.ibm.mysampleapp.graph.algorithms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Dijkstra {
+public class Dijkstra implements Serializable {
+
+    private int[] tempDistance;
+    private ArrayList<Integer> tempResults;
 
     public ArrayList<Integer> algoCompute(int[][] matrix, int numberOfVerticles, int startID,
                                           int endID) {
@@ -68,8 +72,19 @@ public class Dijkstra {
             result.add(j);
             j = preD[j];
         }
+
         result.add(startID);
         Collections.reverse(result);
+        tempDistance = distance;
+        tempResults = result;
         return result;
+    }
+
+    public int[] getTempDistance(){
+        return tempDistance;
+    }
+
+    public ArrayList<Integer> getTempResults(){
+        return tempResults;
     }
 }

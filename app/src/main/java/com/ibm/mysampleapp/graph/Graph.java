@@ -19,6 +19,7 @@ public class Graph implements RoomList, TraceList {
     private final int numberOfVerticles;
     private ArrayList<Edge> edges = new ArrayList<Edge>();
     private ArrayList<Verticle> verticles = new ArrayList<Verticle>();
+    private Dijkstra dijkstra = new Dijkstra();
 
     public Graph(String building, InputStream s) {
 
@@ -71,9 +72,8 @@ public class Graph implements RoomList, TraceList {
 
     public void traceList(int idFrom, int idTo) {
 
-        Dijkstra dijkstra = new Dijkstra();
         ArrayList<Integer> result;
-        final int arrowFrontRoom = 1; //1 zobrazi sipku 2 nezobrazi
+        final int arrowFrontRoom = 1;
         clearTraceList(); //vycisti list
 
         result = dijkstra.algoCompute(matrix(), numberOfVerticles, idFrom, idTo);
@@ -94,5 +94,9 @@ public class Graph implements RoomList, TraceList {
         for (StepImage stepImage1 : traceList) {
             System.out.println("obr: " + stepImage1.getSceneImage());
         }
+    }
+
+    public Dijkstra getDijkstra(){
+        return dijkstra;
     }
 }

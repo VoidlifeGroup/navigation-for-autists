@@ -13,7 +13,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.ibm.mysampleapp.R;
-import com.ibm.mysampleapp.core.Building;
 import com.ibm.mysampleapp.graph.Room;
 
 import java.util.ArrayList;
