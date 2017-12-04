@@ -9,10 +9,12 @@ public class StepImage {
 
     private final String sceneImage;
     private final int distance;
+    private final Arrow arrow;
 
-    public StepImage(String sceneImage, int distance) {
+    public StepImage(String sceneImage, int distance, Arrow arrow) {
         this.sceneImage = sceneImage;
         this.distance = distance;
+        this.arrow = arrow;
     }
 
     public String getSceneImage() {
@@ -21,5 +23,9 @@ public class StepImage {
 
     public int getDistance() {
         return distance;
+    }
+
+    public Arrow getArrow(){
+        return arrow;
     }
 }

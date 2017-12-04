@@ -1,5 +1,6 @@
 package com.ibm.mysampleapp.graph;
 
+import com.ibm.mysampleapp.core.Arrow;
 import com.ibm.mysampleapp.core.RoomList;
 import com.ibm.mysampleapp.core.StepImage;
 import com.ibm.mysampleapp.core.TraceList;
@@ -73,17 +74,27 @@ public class Graph implements RoomList, TraceList {
     public void traceList(int idFrom, int idTo) {
 
         ArrayList<Integer> result;
-        final int arrowFrontRoom = 1;
         clearTraceList(); //vycisti list
+        Arrow arrow;
 
         result = dijkstra.algoCompute(matrix(), numberOfVerticles, idFrom, idTo);
 
-        for (int i = 0; i < result.size() - arrowFrontRoom; i++) { //zvoli zaciatocny vrchol hrany z vyslednych vrcholov
+        for (int i = 0; i < result.size() - 2; i++) { //zvoli zaciatocny vrchol hrany z vyslednych vrcholov
+            arrow = Arrow.ERROR;
             for (Verticle verticle : verticles) { //prejde zoznam vrcholov
                 if (verticle.getId() == result.get(i)) { //najde zvoleny vrchol
                     for (Edge edge : verticle.getEdges()) { //prechadza hrany
                         if (edge.getToIdVerticle() == result.get(i + 1)) { //najde hranu
-                            traceList.add(new StepImage(edge.getImage(), edge.getDistance()));
+                            Integer i1 = result.get(i + 2);
+                            if (i1.equals(edge.getLeftArrow())) { //switch najde smer
+                                arrow = Arrow.LEFT;
+                            } else if (i1.equals(edge.getRightArrow())) {
+                                arrow = Arrow.RIGHT;
+                            } else if (i1.equals(edge.getForwardArrow())) {
+                                arrow = Arrow.FORWARD;
+                            }
+                            //prida obrazok do zoznamu
+                            traceList.add(new StepImage(edge.getImage(), edge.getDistance(), arrow));
                             break;
                         }
                     }
@@ -91,8 +102,22 @@ public class Graph implements RoomList, TraceList {
                 }
             }
         }
+         /*posledna hrana zatial takto natvrdo riesena
+        TODO optimalizovat (ked bude chut, cas)*/
+        for (Verticle verticle : verticles) {
+            if (verticle.getId() == result.get(result.size() - 2)) {
+                for (Edge edge : verticle.getEdges()) {
+                    if (edge.getToIdVerticle() == result.get(result.size() - 1)) {
+                        traceList.add(new StepImage(edge.getImage(), edge.getDistance(), Arrow.FORWARD));
+                        break;
+                    }
+                }
+                break;
+            }
+        }
         for (StepImage stepImage1 : traceList) {
             System.out.println("obr: " + stepImage1.getSceneImage());
+            System.out.println("smer: " + stepImage1.getArrow());
         }
     }
 

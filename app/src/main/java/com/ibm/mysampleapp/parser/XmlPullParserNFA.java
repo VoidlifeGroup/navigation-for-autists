@@ -124,9 +124,20 @@ public class XmlPullParserNFA {
         int to = Integer.parseInt(parser.getAttributeValue(null, "to"));
         String img = parser.getAttributeValue(null, "img");
         int dis = Integer.parseInt(parser.getAttributeValue(null, "dis"));
+        String l, r, u;
+        Integer left = null, right = null, forward = null;
+        if ((l = parser.getAttributeValue(null, "left")) != null) {
+            left = Integer.parseInt(l);
+        }
+        if ((r = parser.getAttributeValue(null, "right")) != null) {
+            right = Integer.parseInt(r);
+        }
+        if ((u = parser.getAttributeValue(null, "forward")) != null) {
+            forward = Integer.parseInt(u);
+        }
         parser.nextTag();
         parser.require(XmlPullParser.END_TAG, ns, "edge");
-        return new Edge(from, to, dis, img);
+        return new Edge(from, to, dis, img, left, right, forward);
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
