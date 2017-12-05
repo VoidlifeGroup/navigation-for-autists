@@ -117,27 +117,38 @@ public class XmlPullParserNFA {
         }
     }
 
-    // Processes title tags in the feed.
+    /**
+     * Funkcia, pre parsovanie kazdej hrany z XML suboru.
+     * Update - img2 je stringovy parameter hrany, ktory obsahuje odkaz na fotku s pohladom na
+     * konci hrany, pricom img obsahuje odkaz na fotku s pohladom na celu hranu od zaciatku
+     * @param parser typu XmlPullParser
+     * @return Edge - vracia objekt hrany, naplneny udajmi, parsovanymi z XML
+     * @throws IOException vynimka
+     * @throws XmlPullParserException vynimka
+     */
     private Edge readEdge(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, "edge");
         int from = Integer.parseInt(parser.getAttributeValue(null, "from"));
         int to = Integer.parseInt(parser.getAttributeValue(null, "to"));
         String img = parser.getAttributeValue(null, "img");
+        String img2 = parser.getAttributeValue(null, "img2");
         int dis = Integer.parseInt(parser.getAttributeValue(null, "dis"));
         String l, r, u;
         Integer left = null, right = null, forward = null;
         if ((l = parser.getAttributeValue(null, "left")) != null) {
             left = Integer.parseInt(l);
+            System.out.println(from + "left--> " + left);
         }
         if ((r = parser.getAttributeValue(null, "right")) != null) {
             right = Integer.parseInt(r);
+            System.out.println(from + "right--> " + right);
         }
         if ((u = parser.getAttributeValue(null, "forward")) != null) {
             forward = Integer.parseInt(u);
         }
         parser.nextTag();
         parser.require(XmlPullParser.END_TAG, ns, "edge");
-        return new Edge(from, to, dis, img, left, right, forward);
+        return new Edge(from, to, dis, img, img2, left, right, forward);
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {

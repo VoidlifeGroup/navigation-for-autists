@@ -85,16 +85,19 @@ public class Graph implements RoomList, TraceList {
                 if (verticle.getId() == result.get(i)) { //najde zvoleny vrchol
                     for (Edge edge : verticle.getEdges()) { //prechadza hrany
                         if (edge.getToIdVerticle() == result.get(i + 1)) { //najde hranu
+                            traceList.add(new StepImage(edge.getImage(), edge.getDistance(),
+                                    Arrow.FORWARD));
+                            /*Ak dalsia hrana bude menit smer, to znamena uz nebude rovno,
+                            vlozime dalsi stepImage, ktory bude sluzit na signalizaciu otocenia. */
                             Integer i1 = result.get(i + 2);
-                            if (i1.equals(edge.getLeftArrow())) { //switch najde smer
-                                arrow = Arrow.LEFT;
-                            } else if (i1.equals(edge.getRightArrow())) {
-                                arrow = Arrow.RIGHT;
-                            } else if (i1.equals(edge.getForwardArrow())) {
-                                arrow = Arrow.FORWARD;
+                            if (i1.equals(edge.getLeftArrow()) && edge.getImage2() != null) {
+                                //switch najde smer
+                                traceList.add(new StepImage(edge.getImage2(), 0,
+                                        Arrow.LEFT));
+                            } else if (i1.equals(edge.getRightArrow()) && edge.getImage2() != null){
+                                traceList.add(new StepImage(edge.getImage2(), 0,
+                                        Arrow.RIGHT));
                             }
-                            //prida obrazok do zoznamu
-                            traceList.add(new StepImage(edge.getImage(), edge.getDistance(), arrow));
                             break;
                         }
                     }
@@ -108,7 +111,8 @@ public class Graph implements RoomList, TraceList {
             if (verticle.getId() == result.get(result.size() - 2)) {
                 for (Edge edge : verticle.getEdges()) {
                     if (edge.getToIdVerticle() == result.get(result.size() - 1)) {
-                        traceList.add(new StepImage(edge.getImage(), edge.getDistance(), Arrow.FORWARD));
+                        traceList.add(new StepImage(edge.getImage(), edge.getDistance(),
+                                Arrow.FORWARD));
                         break;
                     }
                 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <verticles building="FPV UMB">
     <verticle name="Vstup" id="0">
-        <edge from="0" to="1" img="e0_1" dis="12"/>
+        <edge from="0" to="1" img="e0_1" img2="end_e0_1" dis="12" left="2"/>
     </verticle>
     <verticle id="1">
         <edge from="1" to="0" img="e1_0" dis="12"/>
