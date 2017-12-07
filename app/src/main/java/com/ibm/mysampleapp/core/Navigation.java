@@ -16,6 +16,7 @@ import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -28,6 +29,12 @@ public class Navigation extends AppCompatActivity implements TraceList {
     private int pozicia = 0;
     private int distance = 0;
     private TextToSpeech tts_engine;
+    private String language;
+    private String intro_sk = "Vitajte v aplikácii pre autistov. Vaša úroveň autizmu je " +
+            "dostačujúca, aby ste mohli používať túto aplikáciu!";
+    private String intro_en = "Welcome to text to speech mode! " +
+            "Your level of autism is high enough, " +
+            "that you are authorized to use this app!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +48,9 @@ public class Navigation extends AppCompatActivity implements TraceList {
         distanceView = (TextView) findViewById(R.id.distance);
 
         forwardArrow.setVisibility(View.VISIBLE);
-        tts_engine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    Locale loc_slovak = new Locale("sk", "SK");
-                    tts_engine.setLanguage(loc_slovak);
-                    /*tts_engine.speak("Welcome to text to speech mode! " +
-                                    "Your level of autism is high enough, " +
-                                    "that you are authorized to use this app!",
-                            TextToSpeech.QUEUE_ADD, null);*/
-                    tts_engine.speak("Vitajte v aplikácii pre autistov. Váš level autizmu je " +
-                                    "dostačujúci, aby ste mohli používať túto aplikáciu!",
-                            TextToSpeech.QUEUE_ADD, null);
-                }
 
-            }
-        });
+        setLanguage("Slovak");
+        textToSpeechInit(language);
 
         update(sceneImage, traceList, pozicia, distanceView, rightArrow, leftArrow, forwardArrow);
 
@@ -164,11 +157,41 @@ public class Navigation extends AppCompatActivity implements TraceList {
     }
 
     /**
+     * Inicializácia interfacu pre TextToSpeech funkciu.
+     * @param language nastavenie lokalizácie
+     */
+    private void textToSpeechInit(String language){
+        tts_engine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    if (Objects.equals(language, "Slovak")){
+                        tts_engine.setLanguage(new Locale("sk", "SK"));
+                        textToSpeech(intro_sk);
+                    } else {
+                        tts_engine.setLanguage(new Locale("en", "US"));
+                        textToSpeech(intro_en);
+                    }
+                }
+
+            }
+        });
+    }
+
+    /**
      * Metóda, ktorá z daného stringu vytvorí hlasovú nahrávku, ktorú hneď prehrá.
      * @param text text na prehratie
      */
-
     private void textToSpeech(String text){
         tts_engine.speak(text, TextToSpeech.QUEUE_ADD, null);
     }
+
+    /**
+     * Nastavenie jazyka (v nastavení aplikácie TODO)
+     * @param lang jazyk
+     */
+    private void setLanguage(String lang){
+        language = lang;
+    }
+
 }
