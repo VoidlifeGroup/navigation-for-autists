@@ -1,7 +1,9 @@
 package com.ibm.mysampleapp.core;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +14,9 @@ import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Trieda sluzi na postupne zobrazovanie obrazkov, ktore su ulozene v TraceListe
@@ -37,6 +41,24 @@ public class Navigation extends AppCompatActivity implements TraceList {
         distanceView = (TextView) findViewById(R.id.distance);
 
         forwardArrow.setVisibility(View.VISIBLE);
+        tts_engine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    Locale loc_slovak = new Locale("sk", "SK");
+                    tts_engine.setLanguage(loc_slovak);
+                    /*tts_engine.speak("Welcome to text to speech mode! " +
+                                    "Your level of autism is high enough, " +
+                                    "that you are authorized to use this app!",
+                            TextToSpeech.QUEUE_ADD, null);*/
+                    tts_engine.speak("Vitajte v aplikácii pre autistov. Váš level autizmu je " +
+                                    "dostačujúci, aby ste mohli používať túto aplikáciu!",
+                            TextToSpeech.QUEUE_ADD, null);
+                }
+
+            }
+        });
+
         update(sceneImage, traceList, pozicia, distanceView, rightArrow, leftArrow, forwardArrow);
 
         forwardArrow.setOnClickListener(new View.OnClickListener() {
@@ -68,20 +90,6 @@ public class Navigation extends AppCompatActivity implements TraceList {
             }
         });
 
-        tts_engine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    tts_engine.setLanguage(Locale.UK);
-                    tts_engine.speak("Welcome to text to speech mode! " +
-                                    "Your level of autism is high enough, " +
-                                    "that you are authorized to use this app!",
-                            TextToSpeech.QUEUE_ADD, null);
-                }
-
-            }
-        });
-
     }
 
     /**
@@ -100,7 +108,9 @@ public class Navigation extends AppCompatActivity implements TraceList {
         sceneImage.setImageResource(imageID);
 
         // Tu sa pri kazdom pohybe do noveho vrcholu vzdialenost prepocitava
-        distanceView.setText(distanceMessage());
+        String text_vypis = distanceMessage();
+        distanceView.setText(text_vypis);
+        textToSpeech(text_vypis);
 
         if (traceList.get(pozicia).getArrow() == Arrow.RIGHT){
             rightArrow.setVisibility(View.VISIBLE);
@@ -150,5 +160,15 @@ public class Navigation extends AppCompatActivity implements TraceList {
                     (distance <= 4 && distance > 0 ? (distance >= 2 ? " metre." : " meter.") :
                             " metrov.");
         }
+
+    }
+
+    /**
+     * Metóda, ktorá z daného stringu vytvorí hlasovú nahrávku, ktorú hneď prehrá.
+     * @param text text na prehratie
+     */
+
+    private void textToSpeech(String text){
+        tts_engine.speak(text, TextToSpeech.QUEUE_ADD, null);
     }
 }
