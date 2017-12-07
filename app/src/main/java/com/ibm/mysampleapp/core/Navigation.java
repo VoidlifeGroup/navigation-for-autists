@@ -1,6 +1,7 @@
 package com.ibm.mysampleapp.core;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Trieda sluzi na postupne zobrazovanie obrazkov, ktore su ulozene v TraceListe
@@ -21,6 +23,7 @@ public class Navigation extends AppCompatActivity implements TraceList {
 
     private int pozicia = 0;
     private int distance = 0;
+    private TextToSpeech tts_engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,21 @@ public class Navigation extends AppCompatActivity implements TraceList {
                         forwardArrow);
             }
         });
+
+        tts_engine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    tts_engine.setLanguage(Locale.UK);
+                    tts_engine.speak("Welcome to text to speech mode! " +
+                                    "Your level of autism is high enough, " +
+                                    "that you are authorized to use this app!",
+                            TextToSpeech.QUEUE_ADD, null);
+                }
+
+            }
+        });
+
     }
 
     /**
