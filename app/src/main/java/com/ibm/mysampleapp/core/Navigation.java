@@ -1,10 +1,10 @@
 package com.ibm.mysampleapp.core;
 
-import android.os.Build;
+
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,10 +14,9 @@ import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Trieda sluzi na postupne zobrazovanie obrazkov, ktore su ulozene v TraceListe
@@ -53,6 +52,8 @@ public class Navigation extends AppCompatActivity implements TraceList {
         textToSpeechInit(language);
 
         update(sceneImage, traceList, pozicia, distanceView, rightArrow, leftArrow, forwardArrow);
+
+        textToSpeech("Inicializácia dokončená!");
 
         forwardArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +105,7 @@ public class Navigation extends AppCompatActivity implements TraceList {
         String text_vypis = distanceMessage();
         distanceView.setText(text_vypis);
         textToSpeech(text_vypis);
+
 
         if (traceList.get(pozicia).getArrow() == Arrow.RIGHT){
             rightArrow.setVisibility(View.VISIBLE);
@@ -164,7 +166,7 @@ public class Navigation extends AppCompatActivity implements TraceList {
         tts_engine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
+                if(status == TextToSpeech.SUCCESS) {
                     if (Objects.equals(language, "Slovak")){
                         tts_engine.setLanguage(new Locale("sk", "SK"));
                         textToSpeech(intro_sk);
@@ -173,7 +175,6 @@ public class Navigation extends AppCompatActivity implements TraceList {
                         textToSpeech(intro_en);
                     }
                 }
-
             }
         });
     }
@@ -183,7 +184,9 @@ public class Navigation extends AppCompatActivity implements TraceList {
      * @param text text na prehratie
      */
     private void textToSpeech(String text){
-        tts_engine.speak(text, TextToSpeech.QUEUE_ADD, null);
+        HashMap<String, String> map = new HashMap<>();
+        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "1337");
+        tts_engine.speak(text, TextToSpeech.QUEUE_FLUSH, map);
     }
 
     /**
