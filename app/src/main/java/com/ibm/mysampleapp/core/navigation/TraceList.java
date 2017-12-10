@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.core;
+package com.ibm.mysampleapp.core.navigation;
 
 import java.util.ArrayList;
 

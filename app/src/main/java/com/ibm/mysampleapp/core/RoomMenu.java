@@ -46,8 +46,6 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         roomListView.setOnItemClickListener((parent, view, position, id) -> {
             Room room = roomAdapter.getItem(position);
             graph.traceList(0, room.getId());//TODO prednastavene id 0
-            Dijkstra dijkstra = graph.getDijkstra();
-            goToMainActivity.putExtra("dijkstra", dijkstra);
             goToMainActivity.putExtra("room_name", roomAdapter.getItem(position).getName());
             startActivity(goToMainActivity);
         });
@@ -78,9 +76,7 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
         InputStream iStream = context.getResources().openRawResource
                 (getResources().getIdentifier(building.getXml(),
                         "raw", getPackageName()));
-        graph = new Graph(building.getName(), iStream);
-
-        clearRoomList();
+        graph = new Graph(iStream);
         graph.rooms();
     }
 }

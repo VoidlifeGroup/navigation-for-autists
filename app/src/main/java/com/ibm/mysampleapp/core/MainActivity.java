@@ -18,9 +18,8 @@ import com.ibm.bluemix.appid.android.api.AppID;
 import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mysampleapp.R;
+import com.ibm.mysampleapp.core.navigation.Navigation;
 import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
-
-import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
