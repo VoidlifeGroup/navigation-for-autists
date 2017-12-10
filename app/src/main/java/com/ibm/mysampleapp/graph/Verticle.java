@@ -3,9 +3,9 @@ package com.ibm.mysampleapp.graph;
 import java.util.ArrayList;
 
 /**
- * Vrchol obsahuje id a typ
+ * Trieda Verticle obsahuje informácie o vrchole je to jeho id zoznam hrán, ktoré sa napájajú na
+ * daný vrchol.
  */
-
 public class Verticle {
 
     private final int idVerticle;

@@ -1,6 +1,11 @@
 package com.ibm.mysampleapp.graph;
 
-
+/**
+ * Trieda Edge slúži na ukladanie dát o hrane. Sú tu uložené názvy obrázkov hrán, id vrcholov, ktoré
+ * tvoria hranu, dĺžku hrany a id vrcholov nasledujúcich hrán pre určenie smeru otočenia.
+ * @author Martin Bystriansky
+ * @author Radoslav Soják
+ * */
 public class Edge {
 
     private final String image;
@@ -10,10 +15,9 @@ public class Edge {
     private final int distance;
     private final Integer leftArrow;
     private final Integer rightArrow;
-    private final Integer forwardArrow;
 
     public Edge(int fromIdVerticle, int toIdVerticle, int distance, String image, String image2,
-                Integer leftArrow, Integer rightArrow, Integer forwardArrow) {
+                Integer leftArrow, Integer rightArrow) {
         this.fromIdVerticle = fromIdVerticle;
         this.toIdVerticle = toIdVerticle;
         this.distance = distance;
@@ -21,7 +25,6 @@ public class Edge {
         this.image2 = image2;
         this.leftArrow = leftArrow;
         this.rightArrow = rightArrow;
-        this.forwardArrow = forwardArrow;
     }
 
     public int getToIdVerticle() {
@@ -46,10 +49,6 @@ public class Edge {
 
     public Integer getRightArrow() {
         return rightArrow;
-    }
-
-    public Integer getForwardArrow() {
-        return forwardArrow;
     }
 
     public Integer getLeftArrow() {

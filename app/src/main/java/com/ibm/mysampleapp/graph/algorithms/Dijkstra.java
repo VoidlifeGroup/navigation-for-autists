@@ -4,8 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Trieda Dijkstra nečakane obsahuje dijkstrov algoritmus
+ */
+
 public class Dijkstra implements Serializable {
 
+    /**
+     * Dijkstrov algoritmus po zadaní vstupov nájde najktratšiu trasu zo startID do endID
+     * @param matrix matica dĺžok hrán grafu
+     * @param numberOfVerticles počet vrcholov grafu
+     * @param startID číslo začiatočného vrchola
+     * @param endID číslo koncového vrchola
+     * @return vráti arraylist idčok vrcholov, cez ktoré prechádza graf
+     */
     public ArrayList<Integer> algoCompute(int[][] matrix, int numberOfVerticles, int startID,
                                           int endID) {
 
