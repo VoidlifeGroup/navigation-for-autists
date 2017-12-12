@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.core;
+package com.ibm.mysampleapp.core.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.ListView;
 
 import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.BuildingAdapter;
+import com.ibm.mysampleapp.core.Building;
+import com.ibm.mysampleapp.core.BuildingList;
 import com.ibm.mysampleapp.parser.XmlPullParserNFA;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -46,6 +48,7 @@ public class BuildingMenu extends AppCompatActivity implements BuildingList {
             goToMainActivity.putExtra("building", b);
             goToMainActivity.putExtra("name_building", cAdapter.getItem(position).getName());
             startActivity(goToMainActivity);
+            finish();
         });
 
         etSearchB.addTextChangedListener(new TextWatcher() {

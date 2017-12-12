@@ -1,9 +1,9 @@
 package com.ibm.mysampleapp.graph;
 
-import com.ibm.mysampleapp.core.navigation.Arrow;
+import com.ibm.mysampleapp.core.activities.navigation.Arrow;
 import com.ibm.mysampleapp.core.RoomList;
-import com.ibm.mysampleapp.core.navigation.StepImage;
-import com.ibm.mysampleapp.core.navigation.TraceList;
+import com.ibm.mysampleapp.core.activities.navigation.StepImage;
+import com.ibm.mysampleapp.core.activities.navigation.TraceList;
 import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 import com.ibm.mysampleapp.parser.XmlPullParserNFA;
 

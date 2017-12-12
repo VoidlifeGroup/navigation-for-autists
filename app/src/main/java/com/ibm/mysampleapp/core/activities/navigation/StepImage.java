@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.core.navigation;
+package com.ibm.mysampleapp.core.activities.navigation;
 
 /**
  * Created by mato on 6. 11. 2017.

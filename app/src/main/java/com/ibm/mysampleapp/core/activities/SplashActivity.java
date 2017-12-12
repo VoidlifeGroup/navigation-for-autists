@@ -1,8 +1,10 @@
-package com.ibm.mysampleapp.core;
+package com.ibm.mysampleapp.core.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.ibm.mysampleapp.core.activities.MainActivity;
 
 /**
  * Class slúži na zobrazovanie obrázka pri spúšťaní aplikácie. Užívateľ miesto 1-2 sekundového

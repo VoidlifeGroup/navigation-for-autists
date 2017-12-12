@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.core;
+package com.ibm.mysampleapp.core.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,7 +18,8 @@ import com.ibm.bluemix.appid.android.api.AppID;
 import com.ibm.bluemix.appid.android.api.AppIDAuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mysampleapp.R;
-import com.ibm.mysampleapp.core.navigation.Navigation;
+import com.ibm.mysampleapp.core.Building;
+import com.ibm.mysampleapp.core.activities.navigation.Navigation;
 import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 
@@ -117,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
         final Intent goToBuildingMenu = new Intent(MainActivity.this,
                 BuildingMenu.class);
 
-        chooseBuilding.setOnClickListener(v -> startActivity(goToBuildingMenu));
+        chooseBuilding.setOnClickListener((View v) -> {
+            startActivity(goToBuildingMenu);
+        });
 
         final Intent goToRoomMenu = new Intent(MainActivity.this, RoomMenu.class);
 

@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.core;
+package com.ibm.mysampleapp.core.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +12,10 @@ import java.io.InputStream;
 
 import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.adapters.RoomAdapter;
+import com.ibm.mysampleapp.core.Building;
+import com.ibm.mysampleapp.core.RoomList;
 import com.ibm.mysampleapp.graph.Graph;
 import com.ibm.mysampleapp.graph.Room;
-import com.ibm.mysampleapp.graph.algorithms.Dijkstra;
 
 
 /**
@@ -48,6 +49,7 @@ public class RoomMenu extends AppCompatActivity implements RoomList {
             graph.traceList(0, room.getId());//TODO prednastavene id 0
             goToMainActivity.putExtra("room_name", roomAdapter.getItem(position).getName());
             startActivity(goToMainActivity);
+            finish();
         });
 
         etSearchB.addTextChangedListener(new TextWatcher() {

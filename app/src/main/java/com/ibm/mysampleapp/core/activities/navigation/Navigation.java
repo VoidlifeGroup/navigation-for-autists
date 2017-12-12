@@ -1,4 +1,4 @@
-package com.ibm.mysampleapp.core.navigation;
+package com.ibm.mysampleapp.core.activities.navigation;
 
 
 import android.os.Bundle;
@@ -27,11 +27,8 @@ public class Navigation extends AppCompatActivity implements TraceList {
     private int distance = 0;
     private TextToSpeech tts_engine;
     private String language;
-    private String intro_sk = "Vitajte v aplikácii pre autistov. Vaša úroveň autizmu je " +
-            "dostačujúca, aby ste mohli používať túto aplikáciu!";
-    private String intro_en = "Welcome to text to speech mode! " +
-            "Your level of autism is high enough, " +
-            "that you are authorized to use this app!";
+    private String intro_sk = "Vitajte.";
+    private String intro_en = "Welcome.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
