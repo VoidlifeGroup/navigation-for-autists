@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ibm.mysampleapp.core.activities.MainActivity;
+import com.ibm.mysampleapp.core.activities.navigation.ModeMenu;
 
 /**
  * Class slúži na zobrazovanie obrázka pri spúšťaní aplikácie. Užívateľ miesto 1-2 sekundového
@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ModeMenu.class);
         startActivity(intent);
         finish();
     }
