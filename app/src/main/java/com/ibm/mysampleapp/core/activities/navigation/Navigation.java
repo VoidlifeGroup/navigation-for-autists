@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ibm.mysampleapp.R;
+import com.ibm.mysampleapp.communication.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +33,14 @@ public class Navigation extends AppCompatActivity implements TraceList {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        System.out.println("zaciatok testu");
+        Test test = new Test();
+        test.startThread();
+        System.out.println("koniec testu");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.building_navigation);
         TextView distanceView;
