@@ -18,9 +18,30 @@ import org.json.JSONException;
 
 import android.util.Log;
 
-public class Test extends Thread {
-
+public class GetJSON extends Thread {
     private String url;
+    private JSONArray jsonArray;
+
+    public JSONArray getJSON(String url) {
+        Thread thread = new Thread(this);
+        this.url = url;
+        thread.start();
+        synchronized(this){
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return this.jsonArray;
+    }
+
+    public void run(){
+        System.out.println("conn");
+        this.jsonArray = null;
+        getJSONarray();
+    }
 
     private String convertStreamToString(InputStream is) {
         /*
@@ -49,29 +70,18 @@ public class Test extends Thread {
         return sb.toString();
     }
 
-    public void startThread(){
-        Thread thread = new Thread(this);
-        thread.start();
-    }
-
-    public void run(){
-        System.out.println("conn");
-        getJSONarray("http://192.168.0.100:8000/api/route/steps/");
-        getJSONarray("http://192.168.0.100:8000/api/route/route/");
-    }
-
-    public JSONArray getJSONarray(String url) {
+    private void getJSONarray() {
         HttpClient httpclient = new DefaultHttpClient();
 
         // Prepare a request object
-        HttpGet httpget = new HttpGet(url);
+        HttpGet httpget = new HttpGet(this.url);
 
         // Execute the request
         HttpResponse response;
         try {
             response = httpclient.execute(httpget);
             // Examine the response status
-            Log.i("request na " + url, response.getStatusLine().toString());
+            Log.i("request na " + this.url, response.getStatusLine().toString());
 
             // Get hold of the response entity
             HttpEntity entity = response.getEntity();
@@ -92,7 +102,11 @@ public class Test extends Thread {
 
                 instream.close();
 
-                return jsonArray;
+                this.jsonArray =  jsonArray;
+                synchronized(this){
+                    this.notify();
+                }
+                return;
             }
 
         } catch (ClientProtocolException e) {
@@ -102,7 +116,10 @@ public class Test extends Thread {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        this.jsonArray = null;
+        synchronized(this){
+            this.notify();
+        }
     }
 
 }

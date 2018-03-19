@@ -10,6 +10,7 @@ import com.ibm.mysampleapp.adapters.MainMenuAdapter;
 import com.ibm.mysampleapp.adapters.RouteAdapter;
 import com.ibm.mysampleapp.data.MenuAssets;
 
+import com.ibm.mysampleapp.parser.JSONParser;
 /**
  * Created by mato on 19. 3. 2018.
  */
@@ -35,9 +36,7 @@ public class RouteMenu extends AppCompatActivity{
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new RouteAdapter(this, MenuAssets.getRouteList());
+        mAdapter = new RouteAdapter(this, JSONParser.routeParser());
         mRecyclerView.setAdapter(mAdapter);
     }
-
-
 }
