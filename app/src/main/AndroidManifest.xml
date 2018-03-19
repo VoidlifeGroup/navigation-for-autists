@@ -39,6 +39,7 @@
         <activity android:name=".core.activities.navigation.MainMenu"/>
         <activity android:name=".core.activities.navigation.ModeMenu"/>
         <activity android:name=".core.activities.navigation.CustomMenu"/>
+        <activity android:name=".core.activities.navigation.RouteMenu"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

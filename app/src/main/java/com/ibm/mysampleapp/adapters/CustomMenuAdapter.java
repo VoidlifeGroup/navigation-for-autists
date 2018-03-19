@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ibm.mysampleapp.R;
+import com.ibm.mysampleapp.core.activities.MainActivity;
 import com.ibm.mysampleapp.core.activities.navigation.CustomMenu;
 import com.ibm.mysampleapp.core.activities.navigation.MainMenu;
+import com.ibm.mysampleapp.core.activities.navigation.RouteMenu;
 
 import java.util.ArrayList;
 
@@ -69,7 +71,8 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
 
             switch (holder.getAdapterPosition()){
                 case 0:
-                    //TODO ďalšie menu
+                    intent = new Intent(mContext, RouteMenu.class);
+                    mContext.startActivity(intent);
                 case 1:
                     //TODO ďalšie menu
             }

@@ -1,5 +1,7 @@
 package com.ibm.mysampleapp.data;
 
+import com.ibm.mysampleapp.route.Route;
+
 import java.util.ArrayList;
 
 /**
@@ -23,6 +25,17 @@ public class MenuAssets {
         add("NOVÁ TRASA");
     }};
 
+    private static final ArrayList<Route> routeList = new ArrayList<Route>() {{
+        add(new Route("WC"));
+        add(new Route("F134"));
+        add(new Route("F135"));
+        add(new Route("F136"));
+        add(new Route("F137"));
+        add(new Route("F138"));
+    }};
+
+
+
 
 
     public static ArrayList<String> getList(){
@@ -35,5 +48,9 @@ public class MenuAssets {
 
     public static ArrayList<String> getCustomMenuList(){
         return customMenuList;
+    }
+
+    public static ArrayList<Route> getRouteList(){
+        return routeList;
     }
 }
