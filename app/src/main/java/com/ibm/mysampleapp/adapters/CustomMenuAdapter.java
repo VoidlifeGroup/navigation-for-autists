@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ibm.mysampleapp.R;
 import com.ibm.mysampleapp.core.activities.MainActivity;
 import com.ibm.mysampleapp.core.activities.navigation.CustomMenu;
 import com.ibm.mysampleapp.core.activities.navigation.MainMenu;
+import com.ibm.mysampleapp.core.activities.navigation.NewRoute;
 import com.ibm.mysampleapp.core.activities.navigation.RouteMenu;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
         // add data items
         public TextView mTextView;
         public ConstraintLayout parentLayout;
+        public Context viewContext;
         public ViewHolder(View itemView) {
             super(itemView);
             this.mTextView = (TextView) itemView.findViewById(R.id.menuItem);
@@ -56,7 +59,10 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.main_menu_list, parent, false);
 
-        return new ViewHolder(itemView);
+        ViewHolder vh = new ViewHolder(itemView);
+        mContext = parent.getContext();
+
+        return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -67,17 +73,23 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
         holder.mTextView.setText(mDataset.get(position));
         holder.parentLayout.setOnClickListener(view -> {
 
+
             Intent intent;
 
             switch (holder.getAdapterPosition()){
                 case 0:
                     intent = new Intent(mContext, RouteMenu.class);
                     mContext.startActivity(intent);
+                    break;
                 case 1:
-                    //TODO ďalšie menu
+                    //TODO EDITACIA TRASY
+                    break;
+                case 2:
+                    intent = new Intent(mContext, NewRoute.class);
+                    mContext.startActivity(intent);
+                    break;
             }
         });
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

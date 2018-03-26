@@ -70,6 +70,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
                 case 0:
                     intent = new Intent(mContext, MainActivity.class);
                     mContext.startActivity(intent);
+                    break;
             }
         });
 

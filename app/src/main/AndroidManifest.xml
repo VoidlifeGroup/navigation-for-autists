@@ -40,6 +40,8 @@
         <activity android:name=".core.activities.navigation.ModeMenu"/>
         <activity android:name=".core.activities.navigation.CustomMenu"/>
         <activity android:name=".core.activities.navigation.RouteMenu"/>
+        <activity android:name=".core.activities.navigation.NewRoute"/>
+        <activity android:name=".core.activities.navigation.NewStep"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

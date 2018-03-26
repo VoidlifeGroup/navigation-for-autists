@@ -72,9 +72,11 @@ public class ChooseModeAdapter extends RecyclerView.Adapter<ChooseModeAdapter.Vi
                 case 0:
                     intent = new Intent(mContext, MainMenu.class);
                     mContext.startActivity(intent);
+                    break;
                 case 1:
                     intent = new Intent(mContext, CustomMenu.class);
                     mContext.startActivity(intent);
+                    break;
             }
         });
 
