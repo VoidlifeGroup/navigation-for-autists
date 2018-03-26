@@ -7,9 +7,15 @@ package com.ibm.mysampleapp.route;
 public class Route {
 
     private String title;
+    private String id;
 
-    public Route(String title) {
+    public Route(String title, String id) {
         this.title = title;
+        this.id = id;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public String getTitle() {

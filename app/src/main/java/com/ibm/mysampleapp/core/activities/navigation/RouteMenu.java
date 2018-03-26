@@ -37,6 +37,7 @@ public class RouteMenu extends AppCompatActivity{
 
         // specify an adapter (see also next example)
         mAdapter = new RouteAdapter(this, JSONParser.routeParser());
+        JSONParser.stepsParser("1");
         mRecyclerView.setAdapter(mAdapter);
     }
 }

@@ -26,12 +26,12 @@ public class MenuAssets {
     }};
 
     private static final ArrayList<Route> routeList = new ArrayList<Route>() {{
-        add(new Route("WC"));
-        add(new Route("F134"));
-        add(new Route("F135"));
-        add(new Route("F136"));
-        add(new Route("F137"));
-        add(new Route("F138"));
+//        add(new Route("WC"));
+//        add(new Route("F134"));
+//        add(new Route("F135"));
+//        add(new Route("F136"));
+//        add(new Route("F137"));
+//        add(new Route("F138"));
     }};
 
 
