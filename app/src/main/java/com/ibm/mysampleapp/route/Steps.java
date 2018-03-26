@@ -15,17 +15,17 @@ public class Steps {
     private int step;
     private ImageView image;
     private int distance;
-    private ArrayList<String> arrows = new ArrayList<String>();
-    private Route route;
+    private String arrows;
+    private String routeTitle;
 
-    public Steps(String description, int step, ImageView image, int distance,
-                 ArrayList<String> arrows, Route route) {
+    public Steps(String description, int step, int distance,
+                 String arrows, String routeTitle, ImageView image) {
         this.description = description;
         this.step = step;
         this.image = image;
         this.distance = distance;
         this.arrows = arrows;
-        this.route = route;
+        this.routeTitle = routeTitle;
     }
 
     //gettre
@@ -46,12 +46,12 @@ public class Steps {
         return this.distance;
     }
 
-    public ArrayList<String> getArrows() {
+    public String getArrows() {
         return this.arrows;
     }
 
-    public Route getRoute() {
-        return this.route;
+    public String  getRoute() {
+        return this.routeTitle;
     }
 
     //settre
@@ -72,12 +72,12 @@ public class Steps {
         this.distance = distance;
     }
 
-    public void setArrows(ArrayList<String> arrows) {
+    public void setArrows(String arrows) {
         this.arrows = arrows;
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setRoute(String routeTitle) {
+        this.routeTitle = routeTitle;
     }
 
 
